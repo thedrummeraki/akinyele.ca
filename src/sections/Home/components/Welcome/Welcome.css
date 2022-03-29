@@ -1,0 +1,69 @@
+.welcome {
+  text-align: center;
+  background-color: black;
+  color: white;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome a {
+  color: white;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  transition: text-decoration-color 0.3s ease-in-out;
+}
+
+.welcome a:hover {
+  text-decoration-color: white;
+}
+
+.welcome .greeting {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.welcome .greeting.active {
+  opacity: 1;
+}
+
+.welcome .greeting .name {
+  text-align: left;
+}
+
+.welcome .greeting .name h2 {
+  margin-bottom: -1em;
+}
+
+.welcome .with-animated-color {
+  animation: color 120s infinite 0s;
+}
+
+@keyframes color {
+  0% {
+    color: white;
+  }
+
+  16% {
+    color: salmon;
+  }
+
+  33% {
+    color: aqua;
+  }
+
+  50% {
+    color: darkolivegreen;
+  }
+
+  67% {
+    color: bisque;
+  }
+
+  83% {
+    color: hotpink;
+  }
+
+  100% {
+    color: white;
+  }
+}

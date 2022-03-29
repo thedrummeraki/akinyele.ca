@@ -1,0 +1,106 @@
+.projects {
+}
+
+.projects .title {
+  text-align: center;
+}
+
+.projects .filter {
+  background-color: #222;
+  padding: 1em;
+  font-size: 1em;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #111;
+  color: #fff;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.projects .filter:focus {
+  background-color: #2a2a2a;
+}
+
+.projects .actions {
+  display: flex;
+  flex-direction: row;
+  margin: 1em 0;
+  justify-content: space-between;
+}
+
+.projects .actions .tags-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.projects .tag {
+  padding: 0.75em;
+  border: 1px solid #111;
+  border-radius: 10px;
+  outline: none;
+  background-color: #111;
+  color: #ddd;
+  transition: 0.5s;
+}
+
+.projects .tag.selected {
+  background-color: #333;
+  color: #fff;
+  font-weight: 500;
+  border: 1px solid #777;
+}
+
+.projects .tag:not(.selected):focus {
+  background-color: #222;
+  color: #eee;
+}
+
+.projects .results {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.projects .description {
+  color: #aaa;
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .projects .results {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .projects .results {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .projects .results {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .projects .results {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .projects .results {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}
+
+/* .projects .tag.selected::before {
+  content: "✓ ";
+} */

@@ -1,0 +1,61 @@
+* {
+  scrollbar-width: initial;
+  scrollbar-color: white black;
+}
+
+/* Works on Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-track {
+  background: black;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 20px;
+  border: 3px solid black;
+}
+
+body {
+  background-color: black;
+  color: white;
+}
+
+.fluid-container {
+  padding-left: 32px;
+  padding-right: 32px;
+  max-width: none !important;
+}
+
+.card {
+  border-radius: 0.5em;
+  min-height: 150px;
+  border: 1px solid #1a1a1a;
+  display: grid;
+}
+
+.card .header {
+  margin: 0.5em;
+  max-height: 2em;
+}
+
+.card .body {
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+}
+
+.card .footer {
+  margin: 0.5em;
+}
+
+.icons {
+  display: flex;
+  gap: 0.5em;
+}
+
+.icon {
+  height: 1.5em;
+  width: 1.5em;
+}
