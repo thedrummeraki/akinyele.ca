@@ -1,5 +1,17 @@
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import ReactTypewriter from "react-typing-effect";
 import "./Welcome.css";
+
+const values = [
+  "Forward thinking",
+  "Quality and trust",
+  "Long-term solutions",
+  "Constant learning",
+  "Continuous improvement",
+  "Being honest",
+  "Beign upfront",
+  "Collaboration",
+];
 
 interface Props {
   onWelcomed(): void;
@@ -10,6 +22,8 @@ export default function Welcome({ onWelcomed }: Props) {
 
   const greetingRef = useRef<HTMLHeadingElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
+
+  const [showValues, setShowValue] = useState(false);
 
   useEffect(() => {
     const hideGreetingTimeout = setTimeout(() => {
@@ -30,6 +44,7 @@ export default function Welcome({ onWelcomed }: Props) {
 
     const showNameTimeout = setTimeout(() => {
       nameRef.current?.classList.toggle("active");
+      setShowValue(true);
     }, 2500);
 
     setTimeout(() => {
@@ -49,11 +64,25 @@ export default function Welcome({ onWelcomed }: Props) {
       </h1>
       <div ref={nameRef} className="greeting" style={{ display: "none" }}>
         <div className="name">
-          <h2>My name is</h2>
+          <h2>{greeting} My name is</h2>
           <h1 className="with-animated-color">Akinyele Cafe-Febrissy</h1>
         </div>
-        <div className="about-me"></div>
-        <a
+        <div className="about-me">
+          <h3>I believe in:</h3>
+          {showValues && (
+            <code className="values">
+              <ReactTypewriter
+                speed={50}
+                typingDelay={1000}
+                eraseDelay={2500}
+                eraseSpeed={50}
+                cursor={"_"}
+                text={values}
+              />
+            </code>
+          )}
+        </div>
+        {/* <a
           href="/#"
           onClick={(e) => {
             e.preventDefault();
@@ -61,7 +90,7 @@ export default function Welcome({ onWelcomed }: Props) {
           }}
         >
           Learn more
-        </a>
+        </a> */}
       </div>
     </section>
   );

@@ -38,6 +38,10 @@
   animation: color 120s infinite 0s;
 }
 
+.welcome .values {
+  font-size: 2em;
+}
+
 @keyframes color {
   0% {
     color: white;
