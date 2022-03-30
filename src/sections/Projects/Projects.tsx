@@ -4,6 +4,7 @@ import useProjects from "./useProjects";
 
 import "./Projects.css";
 import { Link } from "react-router-dom";
+import { Header } from "../../components";
 
 const tags = [
   {
@@ -76,9 +77,9 @@ export default function Projects() {
 
   return (
     <>
+      <Header />
       <section className="projects fluid-container">
         <h2 className="title">My projects</h2>
-        <Link to="/">Home</Link>
         <input
           type="text"
           placeholder="Filter..."

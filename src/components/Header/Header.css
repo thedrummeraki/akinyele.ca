@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  margin-left: 32px;
+  margin-right: 32px;
+  margin-top: 32px;
+}
+
+.header a {
+  text-decoration: none;
+  color: white;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header .logo .image img {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.header .logo .image {
+  width: 30px;
+  height: 30px;
+  padding-right: 0.7em;
+}
+
+.header .logo .name {
+  font-size: 110%;
+  margin-bottom: 3px;
+}
+
+@media only screen and (max-width: 600px) {
+  /* .header .logo .name {
+    display: none;
+  } */
+}
