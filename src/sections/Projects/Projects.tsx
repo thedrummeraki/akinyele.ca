@@ -3,6 +3,7 @@ import ProjectCard from "./ProjectCard";
 import useProjects from "./useProjects";
 
 import "./Projects.css";
+import { Link } from "react-router-dom";
 
 const tags = [
   {
@@ -74,52 +75,55 @@ export default function Projects() {
   }, [filterInput]);
 
   return (
-    <section className="projects fluid-container">
-      <h2 className="title">My projects</h2>
-      <input
-        type="text"
-        placeholder="Filter..."
-        className="filter"
-        value={input}
-        onInput={(e) => {
-          setInput((e.target as any).value);
-        }}
-      />
-      <div className="actions">
-        <div className="tags-container">
-          {tags.map((tag) => (
-            <Tag
-              key={tag.slug}
-              name={tag.name}
-              selected={selected.includes(tag.slug) || typedTag === tag.slug}
+    <>
+      <section className="projects fluid-container">
+        <h2 className="title">My projects</h2>
+        <Link to="/">Home</Link>
+        <input
+          type="text"
+          placeholder="Filter..."
+          className="filter"
+          value={input}
+          onInput={(e) => {
+            setInput((e.target as any).value);
+          }}
+        />
+        <div className="actions">
+          <div className="tags-container">
+            {tags.map((tag) => (
+              <Tag
+                key={tag.slug}
+                name={tag.name}
+                selected={selected.includes(tag.slug) || typedTag === tag.slug}
+                onClick={() => {
+                  setSelectedTags((current) => {
+                    if (current.includes(tag.slug)) {
+                      return current.filter((x) => x !== tag.slug);
+                    } else {
+                      return [...current, tag.slug];
+                    }
+                  });
+                }}
+              />
+            ))}
+            <button
+              className="text-button"
               onClick={() => {
-                setSelectedTags((current) => {
-                  if (current.includes(tag.slug)) {
-                    return current.filter((x) => x !== tag.slug);
-                  } else {
-                    return [...current, tag.slug];
-                  }
-                });
+                setSelectedTags([]);
+                setInput("");
               }}
-            />
-          ))}
-          <button
-            className="text-button"
-            onClick={() => {
-              setSelectedTags([]);
-              setInput("");
-            }}
-          >
-            Reset
-          </button>
+            >
+              Reset
+            </button>
+          </div>
         </div>
-      </div>
-      <div className="results">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
-      </div>
-    </section>
+        <div className="results">
+          {filteredProjects.map((project) => (
+            <ProjectCard key={project.slug} project={project} />
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
 
@@ -133,7 +137,10 @@ function Tag({
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
-    <button onClick={onClick} className={`tag${selected ? " selected" : ""}`}>
+    <button
+      onClick={onClick}
+      className={`button${selected ? " selected" : ""}`}
+    >
       {name}
     </button>
   );

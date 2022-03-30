@@ -35,6 +35,37 @@ section {
   max-width: none !important;
 }
 
+.button {
+  padding: 0.75em;
+  border: 1px solid #111;
+  border-radius: 10px;
+  outline: none;
+  background-color: rgba(17, 17, 17, 1);
+  color: #ddd;
+  transition: 0.5s;
+}
+
+.button.selected {
+  background-color: #333;
+  color: #fff;
+  font-weight: 500;
+  border: 1px solid #777;
+}
+
+.button:not(.selected):focus {
+  background-color: #222;
+  color: #eee;
+}
+
+.button:hover {
+  background-color: rgba(17, 17, 17, 0.6);
+  cursor: pointer;
+}
+
+.button.scale-up-on-hover:hover {
+  transform: scale(1.05);
+}
+
 .card {
   border-radius: 0.5em;
   min-height: 150px;
@@ -64,4 +95,24 @@ section {
 .icon {
   height: 1.5em;
   width: 1.5em;
+}
+
+.my-node-enter {
+  opacity: 0;
+}
+.my-node-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms;
+}
+.my-node-exit {
+  opacity: 1;
+}
+.my-node-exit-active {
+  opacity: 0;
+  transition: opacity 1000ms;
+}
+
+/* Helper methods */
+.text-centered {
+  text-align: center;
 }

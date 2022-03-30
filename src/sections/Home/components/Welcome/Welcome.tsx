@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import ReactTypewriter from "react-typing-effect";
+import { email, github, linkedin, skype, spotify } from "../../../../icons";
 import "./Welcome.css";
 
 const values = [
@@ -68,29 +70,34 @@ export default function Welcome({ onWelcomed }: Props) {
           <h1 className="with-animated-color">Akinyele Cafe-Febrissy</h1>
         </div>
         <div className="about-me">
-          <h3>I believe in:</h3>
-          {showValues && (
-            <code className="values">
-              <ReactTypewriter
-                speed={50}
-                typingDelay={1000}
-                eraseDelay={2500}
-                eraseSpeed={50}
-                cursor={"_"}
-                text={values}
-              />
-            </code>
-          )}
+          <SocialLink
+            url="https://github.akinyele.ca"
+            alt="GitHub"
+            icon={github}
+          />
+          <SocialLink
+            url="https://linkedin.akinyele.ca"
+            alt="LinkedIn"
+            icon={linkedin}
+          />
+          <SocialLink url="skype:aakin013" alt="Skype" icon={skype} />
+          <SocialLink
+            url="mailto:me@akinyele.ca"
+            alt="mailto:me@akinyele.ca"
+            icon={email}
+          />
+          <SocialLink
+            internal
+            url="/music"
+            alt="What I'm listening to"
+            icon={spotify}
+          />
         </div>
-        {/* <a
-          href="/#"
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector(".projects")?.scrollIntoView();
-          }}
-        >
-          Learn more
-        </a> */}
+        <Link to="/projects">
+          <button className="button see-projects scale-up-on-hover">
+            <code>{"~/$ see-my-work --now >"}</code>
+          </button>
+        </Link>
       </div>
     </section>
   );
@@ -106,4 +113,28 @@ function useGreeting() {
   }
 
   return "Good evening.";
+}
+
+function SocialLink({
+  internal,
+  alt,
+  url,
+  icon,
+}: {
+  internal?: boolean;
+  alt: string;
+  url: string;
+  icon: string;
+}) {
+  const iconMarkup = <img src={icon} className="icon" alt={alt} />;
+
+  if (internal) {
+    return <Link to={url}>{iconMarkup}</Link>;
+  }
+
+  return (
+    <a href={url} target="_blank" rel="noreferrer">
+      {iconMarkup}
+    </a>
+  );
 }

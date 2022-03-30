@@ -1,5 +1,5 @@
 import { Project } from "./types";
-import { github, view } from "../../../../icons";
+import { github, view } from "../../icons";
 
 interface Props {
   project: Project;
