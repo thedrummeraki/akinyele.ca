@@ -35,6 +35,17 @@ export default function useProjects() {
       }
     },
     {
+      slug: 'dexify',
+      name: 'Dexify',
+      synopsis: 'An unofficial alternative Manga reader. Powered by Mangadex.org.',
+      url: 'https://dexify.herokuapp.com',
+      tags: ['web'],
+      madeIn: {
+        year: 2021,
+        season: 'fall'
+      }
+    },
+    {
       slug: 'mangadex',
       name: 'Mangadex (Ruby Gem)',
       synopsis: 'Your (unofficial) favourite Ruby gem for interacting with Mangadex.org.',
@@ -56,6 +67,56 @@ export default function useProjects() {
       },
       tags: ['web'],
       url: 'https://id.youranime.moe'
+    },
+    {
+      slug: 'misete',
+      name: 'Misete.io',
+      synopsis: 'A space for watching and sharing Nintendo Switch clips.',
+      madeIn: {
+        year: 2020,
+        season: 'spring',
+      },
+      tags: ['web', 'api']
+    },
+    {
+      slug: 'osusume',
+      name: "O SUSUME (Watch parties)",
+      synopsis: "A tools serving as Shopify's internal recommendations anime system.",
+      madeIn: {
+        year: 2020,
+        season: 'summer',
+      },
+      tags: ['web'],
+    },
+    {
+      slug: 'notaki',
+      name: 'Notaki.ca (formerly forevernote.ca)',
+      synopsis: 'A note-taking app for students',
+      madeIn: {
+        year: 2017,
+        season: 'summer',
+      },
+      tags: ['web'],
+    },
+    {
+      slug: 'capstone',
+      name: 'Rent Management Dashboard',
+      synopsis: 'Manage your rent payments with this simple yet powerful dashboard.',
+      madeIn: {
+        year: 2019,
+        season: 'winter',
+      },
+      tags: ['web'],
+    },
+    {
+      slug: 'youranime-admin',
+      name: 'YourAnime.moe Admin panel',
+      synopsis: 'YourAnime.moe: supercharged.',
+      madeIn: {
+        year: 2020,
+        season: 'summer',
+      },
+      tags: ['web'],
     }
   ];
 
