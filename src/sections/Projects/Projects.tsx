@@ -3,7 +3,6 @@ import ProjectCard from "./ProjectCard";
 import useProjects from "./useProjects";
 
 import "./Projects.css";
-import { Link } from "react-router-dom";
 import { Header } from "../../components";
 
 const tags = [
@@ -78,7 +77,7 @@ export default function Projects() {
   return (
     <>
       <Header />
-      <section className="projects fluid-container">
+      <section className="projects container">
         <h2 className="title">My projects</h2>
         <input
           type="text"

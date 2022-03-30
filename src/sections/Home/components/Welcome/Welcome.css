@@ -5,9 +5,13 @@
   bottom: 0;
   left: 0;
   right: 0;
-  opacity: 0.2;
+  opacity: 0;
   background: url("main-bg.jpg") center center / cover no-repeat;
-  animation: fade-in 3s;
+  animation: fade-in 3s ease-in;
+}
+
+.welcome-background.active {
+  opacity: 0.2;
 }
 
 .my-node-enter .welcome-background {
@@ -30,6 +34,7 @@
   color: white;
   align-items: center;
   justify-content: center;
+  height: 100vh;
   /* animation: screen-background 20s infinite 1s; */
 }
 
@@ -70,7 +75,6 @@
 }
 
 .welcome .about-me {
-  display: flex;
   gap: 1em;
   justify-content: center;
   margin: 2em;
@@ -121,6 +125,15 @@
 
   100% {
     background-position: 0% 50%;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.2;
   }
 }
 

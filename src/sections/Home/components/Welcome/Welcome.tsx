@@ -1,19 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import ReactTypewriter from "react-typing-effect";
 import { email, github, linkedin, skype, spotify } from "../../../../icons";
 import "./Welcome.css";
 
-const values = [
-  "Forward thinking",
-  "Quality and trust",
-  "Long-term solutions",
-  "Constant learning",
-  "Continuous improvement",
-  "Being honest",
-  "Beign upfront",
-  "Collaboration",
-];
+// const values = [
+//   "Forward thinking",
+//   "Quality and trust",
+//   "Long-term solutions",
+//   "Constant learning",
+//   "Continuous improvement",
+//   "Being honest",
+//   "Beign upfront",
+//   "Collaboration",
+// ];
 
 interface Props {
   onWelcomed(): void;
@@ -24,8 +23,6 @@ export default function Welcome({ onWelcomed }: Props) {
 
   const greetingRef = useRef<HTMLHeadingElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
-
-  const [showValues, setShowValue] = useState(false);
 
   useEffect(() => {
     const hideGreetingTimeout = setTimeout(() => {
@@ -46,7 +43,6 @@ export default function Welcome({ onWelcomed }: Props) {
 
     const showNameTimeout = setTimeout(() => {
       nameRef.current?.classList.toggle("active");
-      setShowValue(true);
     }, 2500);
 
     setTimeout(() => {
@@ -69,7 +65,7 @@ export default function Welcome({ onWelcomed }: Props) {
           <h2>{greeting} My name is</h2>
           <h1 className="with-animated-color">Akinyele Cafe-Febrissy</h1>
         </div>
-        <div className="about-me">
+        <div className="icons about-me">
           <SocialLink
             url="https://github.akinyele.ca"
             alt="GitHub"

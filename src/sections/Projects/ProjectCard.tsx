@@ -9,7 +9,10 @@ export default function ProjectCard({ project }: Props) {
   return (
     <div className="card">
       <div className="header">
-        <span className="title">{project.name}</span>
+        <div className="project-title">
+          <span className="title">{project.name}</span>
+          <small className="year">{project.madeIn.year}</small>
+        </div>
       </div>
       <div className="body">
         <small className="description">{project.synopsis}</small>

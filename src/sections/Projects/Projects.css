@@ -59,6 +59,15 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+.projects .card .project-title {
+  display: grid;
+}
+
+.projects .card .project-title small {
+  font-size: x-small;
+  color: #aaa;
+}
+
 .projects .description {
   color: #aaa;
 }

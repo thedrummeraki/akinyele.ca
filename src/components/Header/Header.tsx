@@ -12,7 +12,7 @@ export default function Header({ name = "Akinyele Cafe-Febrissy" }: Props) {
     <div className="header">
       <Link to="/" className="logo">
         <div className="image">
-          <img src={myFace} />
+          <img src={myFace} alt="Akinyele Cafe-Febrissy" />
         </div>
         <div className="name">
           <h3>{name}</h3>

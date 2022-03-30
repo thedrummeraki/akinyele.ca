@@ -24,7 +24,6 @@ body {
 }
 
 section {
-  height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -33,6 +32,13 @@ section {
   padding-left: 32px;
   padding-right: 32px;
   max-width: none !important;
+}
+
+.container {
+  padding-left: 32px;
+  padding-right: 32px;
+  max-width: none;
+  margin: 0 auto;
 }
 
 .button {
@@ -68,19 +74,18 @@ section {
 
 .card {
   border-radius: 0.5em;
-  min-height: 150px;
   border: 1px solid #1a1a1a;
   display: grid;
 }
 
 .card .header {
   margin: 0.5em;
-  max-height: 2em;
 }
 
 .card .body {
   margin-left: 0.5em;
   margin-right: 0.5em;
+  min-height: 100px;
 }
 
 .card .footer {
@@ -115,4 +120,22 @@ section {
 /* Helper methods */
 .text-centered {
   text-align: center;
+}
+
+@media only screen and (min-width: 1024px) and (max-width: 1215px) {
+  .container {
+    max-width: 960px;
+  }
+}
+
+@media only screen and (min-width: 1216px) and (max-width: 1407px) {
+  .container {
+    max-width: 1152px;
+  }
+}
+
+@media only screen and (min-width: 1408px) {
+  .container {
+    max-width: 1344px;
+  }
 }
