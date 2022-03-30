@@ -11,6 +11,21 @@
   animation: zoom-in-out 60s ease-in-out infinite;
 }
 
+.my-node-enter .welcome-background {
+  opacity: 0;
+}
+.my-node-enter-active .welcome-background {
+  opacity: 0.2;
+  transition: opacity 500ms;
+}
+.my-node-exit .welcome-background {
+  opacity: 0.2;
+}
+.my-node-exit-active .welcome-background {
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
 .welcome {
   text-align: center;
   color: white;
