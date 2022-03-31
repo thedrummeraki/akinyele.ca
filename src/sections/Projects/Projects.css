@@ -57,6 +57,7 @@
   display: grid;
   gap: 10px;
   grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 2em;
 }
 
 .projects .card .project-title {
@@ -72,8 +73,27 @@
   color: #aaa;
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
+.projects .technologies {
+  display: flex;
+  gap: 0.25em;
+  margin-top: 0.75em;
+  margin-bottom: 0.5em;
+}
+
+.projects .badge {
+  font-size: x-small;
+  padding: 0.5em;
+  border-radius: 0.5em;
+}
+
+/* Smaller devices (phones, 600px and down) */
+@media only screen and (max-width: 450px) {
+  .projects .results {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media only screen and (min-width: 450px) {
   .projects .results {
     grid-template-columns: repeat(2, 1fr);
   }

@@ -74,7 +74,8 @@ section {
 
 .card {
   border-radius: 0.5em;
-  border: 1px solid #1a1a1a;
+  background: #222222aa;
+  border: 1px solid #1f1f1f;
   display: grid;
 }
 
@@ -85,7 +86,7 @@ section {
 .card .body {
   margin-left: 0.5em;
   margin-right: 0.5em;
-  min-height: 100px;
+  min-height: 50px;
 }
 
 .card .footer {

@@ -1,5 +1,6 @@
 import { Project } from "./types";
-import { github, view } from "../../icons";
+import { github, play, view } from "../../icons";
+import { technologyInfo } from "./useProjects";
 
 interface Props {
   project: Project;
@@ -19,8 +20,20 @@ export default function ProjectCard({ project }: Props) {
       </div>
       <div className="footer">
         <div className="icons">
+          <WatchDemo project={project} />
           <GithubLink project={project} />
           <ViewProject project={project} />
+        </div>
+        <div className="technologies">
+          {project.technologies.map((technology) => {
+            const info = technologyInfo(technology);
+
+            return (
+              <span className="badge" style={{ ...info }}>
+                {info.name}
+              </span>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -35,7 +48,7 @@ function GithubLink({ project }: { project: Project }) {
   }
 
   return (
-    <a href={githubUrl} target="_blank" rel="noreferrer">
+    <a href={githubUrl} target="_blank" rel="noreferrer" title="View on Github">
       <img src={github} className="icon" alt={project.name + " github"} />
     </a>
   );
@@ -49,9 +62,31 @@ function ViewProject({ project }: { project: Project }) {
     return null;
   }
 
+  const title = "Open " + project.name;
+
   return (
-    <a href={projectUrl} target="_blank" rel="noreferrer">
-      <img src={view} className="icon" alt={"Open " + project.name} />
+    <a href={projectUrl} target="_blank" rel="noreferrer" title={title}>
+      <img src={view} className="icon" alt={title} />
+    </a>
+  );
+}
+
+function WatchDemo({ project }: { project: Project }) {
+  const { watchDemo } = project;
+
+  if (!watchDemo) {
+    return null;
+  }
+
+  if (watchDemo.embed) {
+    return null;
+  }
+
+  const title = "Watch demo for " + project.name;
+
+  return (
+    <a href={watchDemo.link} target="_blank" rel="noreferrer" title={title}>
+      <img src={play} className="icon" alt={title} />
     </a>
   );
 }
