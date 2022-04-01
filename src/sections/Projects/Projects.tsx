@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect, useMemo, useState } from "react";
+import { MouseEventHandler, useEffect, useMemo, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import useProjects from "./useProjects";
 
@@ -32,6 +32,8 @@ export default function Projects() {
   const projects = useProjects();
   const [selected, setSelectedTags] = useState<string[]>([]);
   const [typedTag, setTypedTag] = useState<string>();
+
+  const resultsRef = useRef<HTMLDivElement>(null);
 
   const [input, setInput] = useState("");
 
@@ -74,6 +76,16 @@ export default function Projects() {
     }
   }, [filterInput]);
 
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      if (resultsRef.current) {
+        resultsRef.current.classList.add("showing");
+      }
+    }, 300);
+
+    return () => clearTimeout(timeout);
+  }, [filteredProjects]);
+
   return (
     <>
       <Header />
@@ -103,6 +115,10 @@ export default function Projects() {
                       return [...current, tag.slug];
                     }
                   });
+
+                  if (resultsRef.current) {
+                    resultsRef.current.classList.remove("showing");
+                  }
                 }}
               />
             ))}
@@ -111,13 +127,17 @@ export default function Projects() {
               onClick={() => {
                 setSelectedTags([]);
                 setInput("");
+
+                if (resultsRef.current) {
+                  resultsRef.current.classList.remove("showing");
+                }
               }}
             >
               Reset
             </button>
           </div>
         </div>
-        <div className="results">
+        <div className="results" ref={resultsRef}>
           {filteredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}

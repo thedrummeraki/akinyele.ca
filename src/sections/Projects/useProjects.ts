@@ -27,7 +27,8 @@ export default function useProjects() {
       github: "https://github.com/YourAnime-moe/youranime.moe",
       url: "https://youranime.moe",
       watchDemo: {
-        link: "https://youtu.be/1ShelOHqjUE",
+        link: "https://www.youtube.com/embed/1ShelOHqjUE",
+        embed: true,
       },
     },
     {
@@ -40,7 +41,8 @@ export default function useProjects() {
         year: 2020,
       },
       watchDemo: {
-        link: "https://youtu.be/xQeAJQJvhJM",
+        link: "https://www.youtube.com/embed/xQeAJQJvhJM",
+        embed: true,
       },
     },
     {
@@ -83,7 +85,8 @@ export default function useProjects() {
       technologies: ["rails"],
       url: "https://id.youranime.moe",
       watchDemo: {
-        link: "https://youtu.be/5mvfGUjjYUE",
+        link: "https://www.youtube.com/embed/5mvfGUjjYUE",
+        embed: true,
       },
     },
     {
@@ -97,7 +100,8 @@ export default function useProjects() {
       tags: ["web", "api"],
       technologies: ["rails"],
       watchDemo: {
-        link: "https://youtu.be/13vbgK3JLjQ",
+        link: "https://www.youtube.com/embed/13vbgK3JLjQ",
+        embed: true,
       },
     },
     {
@@ -157,7 +161,8 @@ export default function useProjects() {
       tags: ["web"],
       technologies: ["rails"],
       watchDemo: {
-        link: "https://youtu.be/pCId99AK1HU",
+        link: "https://www.youtube.com/embed/pCId99AK1HU",
+        embed: true,
       },
     },
   ];
