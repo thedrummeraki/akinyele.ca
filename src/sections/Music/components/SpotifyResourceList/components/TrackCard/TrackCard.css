@@ -1,8 +1,8 @@
 .spotify .track {
   display: flex;
   flex-direction: column;
-  background-color: #111111a0;
-  border-radius: 0.75em;
+  background-color: #181818a0;
+  border-radius: 0.65em;
   padding: 1.5em;
   color: #fff;
   text-decoration: none;
@@ -11,7 +11,7 @@
 }
 
 .spotify .track:hover {
-  background-color: #222222d0;
+  background-color: #282828a0;
 }
 
 .spotify .track .name {
@@ -25,7 +25,7 @@
 
 .spotify .track .image {
   margin-bottom: 1em;
-  border-radius: 0.75em;
+  border-radius: 0.5em;
   width: 100%;
   height: auto;
   object-fit: cover;

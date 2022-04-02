@@ -33,8 +33,6 @@ export default function Projects() {
   const [selected, setSelectedTags] = useState<string[]>([]);
   const [typedTag, setTypedTag] = useState<string>();
 
-  const resultsRef = useRef<HTMLDivElement>(null);
-
   const [input, setInput] = useState("");
 
   const filterInput = input.trim().toLocaleLowerCase();
@@ -76,16 +74,6 @@ export default function Projects() {
     }
   }, [filterInput]);
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (resultsRef.current) {
-        resultsRef.current.classList.add("showing");
-      }
-    }, 300);
-
-    return () => clearTimeout(timeout);
-  }, [filteredProjects]);
-
   return (
     <>
       <Header />
@@ -115,10 +103,6 @@ export default function Projects() {
                       return [...current, tag.slug];
                     }
                   });
-
-                  if (resultsRef.current) {
-                    resultsRef.current.classList.remove("showing");
-                  }
                 }}
               />
             ))}
@@ -127,17 +111,13 @@ export default function Projects() {
               onClick={() => {
                 setSelectedTags([]);
                 setInput("");
-
-                if (resultsRef.current) {
-                  resultsRef.current.classList.remove("showing");
-                }
               }}
             >
               Reset
             </button>
           </div>
         </div>
-        <div className="results grid" ref={resultsRef}>
+        <div className="results grid">
           {filteredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}

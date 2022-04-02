@@ -95,7 +95,7 @@ export default function Welcome({ onWelcomed }: Props) {
             internal
             url="/music"
             alt="What I'm listening to"
-            icon={track ? spotify : spotifyOffline}
+            icon={track?.playing ? spotify : spotifyOffline}
           />
         </div>
         <Link to="/projects">
