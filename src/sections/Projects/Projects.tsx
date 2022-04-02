@@ -137,7 +137,7 @@ export default function Projects() {
             </button>
           </div>
         </div>
-        <div className="results" ref={resultsRef}>
+        <div className="results grid" ref={resultsRef}>
           {filteredProjects.map((project) => (
             <ProjectCard key={project.slug} project={project} />
           ))}
@@ -166,7 +166,8 @@ function Tag({
   );
 }
 
-function intersect<T>(a: T[], b: T[]) {
+// todo move to utils file
+export function intersect<T>(a: T[], b: T[]) {
   var setA = new Set(a);
   var setB = new Set(b);
   var intersection = new Set([...setA].filter((x) => setB.has(x)));

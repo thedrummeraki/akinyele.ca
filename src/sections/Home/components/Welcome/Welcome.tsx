@@ -1,6 +1,14 @@
-import { useEffect, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { email, github, linkedin, skype, spotify } from "../../../../icons";
+import { MusicContext } from "../../../../App/providers/MusicProvider";
+import {
+  email,
+  github,
+  linkedin,
+  skype,
+  spotify,
+  spotifyOffline,
+} from "../../../../icons";
 import "./Welcome.css";
 
 // const values = [
@@ -20,6 +28,7 @@ interface Props {
 
 export default function Welcome({ onWelcomed }: Props) {
   const greeting = useGreeting();
+  const { track } = useContext(MusicContext);
 
   const greetingRef = useRef<HTMLHeadingElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);
@@ -86,7 +95,7 @@ export default function Welcome({ onWelcomed }: Props) {
             internal
             url="/music"
             alt="What I'm listening to"
-            icon={spotify}
+            icon={track ? spotify : spotifyOffline}
           />
         </div>
         <Link to="/projects">

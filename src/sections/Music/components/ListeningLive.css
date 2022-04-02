@@ -1,0 +1,60 @@
+.listening-live {
+  display: flex;
+}
+
+.listening-live > .card {
+  flex: 1;
+}
+
+.listening-live > .card > .body {
+  display: flex;
+}
+
+.listening-live .image {
+  width: 100%;
+  height: 100%;
+  margin-left: -0.5em;
+  border-top-left-radius: 0.5em;
+  border-bottom-left-radius: 0.5em;
+  flex: 1;
+}
+
+.listening-live .track-info {
+  display: flex;
+  flex-direction: column;
+  flex: 10;
+  padding: 0.5em 0.75em;
+}
+
+.listening-live .track-title {
+  display: flex;
+  gap: 0.25em;
+  margin-left: -2px;
+}
+
+.listening-live .track-title > .title {
+  font-size: 1.5em;
+}
+
+.listening-live .album-artist-info {
+  font-size: small;
+  margin-top: 0.25em;
+}
+
+.listening-live .track-progress {
+  display: flex;
+  align-items: center;
+  flex: 1 0 auto;
+}
+
+.listening-live .track-progress .total {
+  background-color: #222;
+  height: 5px;
+  width: 100%;
+}
+
+.listening-live .track-progress .actual {
+  background-color: #aaa;
+  height: 5px;
+  transition: width 0.5s ease-in-out;
+}

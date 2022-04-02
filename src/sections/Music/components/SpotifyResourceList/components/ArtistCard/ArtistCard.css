@@ -1,0 +1,29 @@
+.spotify .artist {
+  display: flex;
+  flex-direction: column;
+  background-color: #111111a0;
+  border-radius: 0.75em;
+  padding: 1.5em;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background-color 300ms ease-in-out;
+}
+
+.spotify .artist:hover {
+  background-color: #222222d0;
+}
+
+.spotify .artist .name {
+  font-size: large;
+  font-weight: bolder;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.spotify .artist .image {
+  margin-bottom: 1em;
+  border-radius: 100%;
+}

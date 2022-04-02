@@ -1,0 +1,67 @@
+.spotify .resource-list {
+  margin: 1em 0;
+  gap: 2em !important;
+}
+
+.spotify .name.playing {
+  color: rgb(0, 217, 95);
+}
+
+/* Smaller devices (phones, 600px and down) */
+@media only screen and (max-width: 450px) {
+  .resource-list.grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .resource-list.grid > a:last-child {
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  .resource-list.grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .resource-list.grid > a:last-child {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .resource-list.grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .resource-list.grid > a:last-child {
+    display: none;
+  }
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+  .resource-list.grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .resource-list.grid > a:last-child {
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .resource-list.grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .resource-list.grid > a:last-child {
+    display: flex;
+  }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  .resource-list.grid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  .resource-list.grid > a:last-child {
+    display: flex;
+  }
+}

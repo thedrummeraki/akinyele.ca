@@ -1,0 +1,32 @@
+.spotify .track {
+  display: flex;
+  flex-direction: column;
+  background-color: #111111a0;
+  border-radius: 0.75em;
+  padding: 1.5em;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background-color 300ms ease-in-out;
+}
+
+.spotify .track:hover {
+  background-color: #222222d0;
+}
+
+.spotify .track .name {
+  font-size: large;
+  font-weight: bolder;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.spotify .track .image {
+  margin-bottom: 1em;
+  border-radius: 0.75em;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
