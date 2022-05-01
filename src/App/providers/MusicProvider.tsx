@@ -73,6 +73,7 @@ export function useResourcePlaying(resource: SpotifyResource) {
 export function useArtists() {
   const [loading, setLoading] = useState(false);
   const [artists, setArtists] = useState<Artist[]>([]);
+  const [error, setError] = useState<any>(null);
 
   const fetchArtists = () => {
     if (loading) return;
@@ -83,18 +84,22 @@ export function useArtists() {
       .then((artists) => {
         setArtists(artists || []);
       })
-      .catch((e) => console.error("error", e))
+      .catch((e) => {
+        console.error("error", e);
+        setError(e);
+      })
       .finally(() => setLoading(false));
   };
 
   useEffect(fetchArtists, []);
 
-  return { loading, artists };
+  return { loading, artists, error };
 }
 
 export function useTracks({ top, timeRange }: TracksProps) {
   const [loading, setLoading] = useState(false);
   const [tracks, setTracks] = useState<Track[]>([]);
+  const [error, setError] = useState<any>(null);
 
   const fetchTracks = () => {
     if (loading) return;
@@ -107,13 +112,16 @@ export function useTracks({ top, timeRange }: TracksProps) {
       .then((tracks) => {
         setTracks(tracks || []);
       })
-      .catch((e) => console.error("error", e))
+      .catch((e) => {
+        console.error("error", e);
+        setError(e);
+      })
       .finally(() => setLoading(false));
   };
 
   useEffect(fetchTracks, []);
 
-  return { loading, tracks };
+  return { loading, tracks, error };
 }
 
 function useCurrentTrack() {

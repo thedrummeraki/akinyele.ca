@@ -26,6 +26,10 @@ const tags = [
     name: "API",
     slug: "api",
   },
+  {
+    name: "Games",
+    slug: "game",
+  },
 ];
 
 export default function Projects() {

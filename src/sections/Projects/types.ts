@@ -1,4 +1,5 @@
 export interface Project {
+  hidden?: boolean;
   slug: string;
   name: string;
   synopsis: string;
@@ -6,19 +7,22 @@ export interface Project {
   technologies: ProjectTechnology[];
   description?: string;
   url?: string;
+  internalUrl?: string;
+  hackathon?: boolean;
+  internal?: boolean; // indicate if project for internal use only (ie: within company only)
   imageUrl?: string;
+  company?: CompanyDetails;
+  gallery?: string[]; // image url list for photo gallery
   github?: boolean | string; // if true, the github url will be derived from the slug
-  madeIn: {
-    year: number;
-    season?: "fall" | "winter" | "spring" | "summer";
-  };
+  madeIn: ProjectMadeInfo;
   watchDemo?: {
     embed?: boolean;
     link: string;
   };
 }
 
-export type ProjectTag = "web" | "mobile" | "bot" | "api" | "library";
+export type ProjectTag = "web" | "mobile" | "bot" | "api" | "library" | "game";
+export type Season = "fall" | "winter" | "spring" | "summer";
 
 export interface TagState {
   slug: string;
@@ -33,4 +37,19 @@ export type ProjectTechnology =
   | "ruby"
   | "node"
   | "react-native"
-  | "sorbet";
+  | "sorbet"
+  | "python"
+  | "C#"
+  | "unity"
+  | "java";
+
+export interface CompanyDetails {
+  name: string;
+  website?: string;
+  github?: string;
+}
+
+export interface ProjectMadeInfo {
+  year: number;
+  season?: Season;
+}
