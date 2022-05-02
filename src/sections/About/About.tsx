@@ -20,7 +20,7 @@ export default function About() {
         <div className="projects">
           <div className="grid">
             {projects.map((project) => (
-              <ProjectCard project={project} />
+              <ProjectCard project={project} onTechnologySelect={() => {}} />
             ))}
           </div>
         </div>

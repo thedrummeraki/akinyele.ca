@@ -36,7 +36,7 @@ export default function ListeningLive() {
               <div className="album-artist-info">
                 {track.artists
                   .map<React.ReactNode>((artist) => (
-                    <ArtistLink artist={artist} />
+                    <ArtistLink key={artist.id} artist={artist} />
                   ))
                   .reduce((prev, current) => [prev, ", ", current])}
               </div>

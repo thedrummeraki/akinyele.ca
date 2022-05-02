@@ -10,6 +10,10 @@ export { default as spotify } from "./spotify.svg";
 export { default as spotifyOffline } from "./spotify_off.svg";
 export { default as openInNew } from "./open_in_new.svg";
 export { default as youtube } from "./youtube.svg";
+export { default as filter } from "./filter.svg";
+
+// Companies
+export { default as shopify } from "./shopify.svg";
 
 // Icons
 export { default as myFace } from "./akinyele.jpg";

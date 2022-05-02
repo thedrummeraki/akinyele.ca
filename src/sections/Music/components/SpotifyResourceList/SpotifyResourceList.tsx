@@ -54,10 +54,10 @@ export default function SpotifyResourceList({
       <div className="resource-list grid">
         {data.slice(0, top).map((resource) => {
           if (isArtist(resource)) {
-            return <ArtistCard artist={resource} />;
+            return <ArtistCard key={resource.id} artist={resource} />;
           }
           if (isTrack(resource)) {
-            return <TrackCard track={resource} />;
+            return <TrackCard key={resource.id} track={resource} />;
           }
 
           return null;

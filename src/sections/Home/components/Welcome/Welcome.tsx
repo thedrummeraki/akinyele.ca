@@ -98,9 +98,9 @@ export default function Welcome({ onWelcomed }: Props) {
             icon={track?.playing ? spotify : spotifyOffline}
           />
         </div>
-        <Link to="/about">
+        <Link to="/projects">
           <button className="button see-projects scale-up-on-hover">
-            <code>{"~/$ learn-more --now >"}</code>
+            <code>{"~/$ see-my-work --now >"}</code>
           </button>
         </Link>
       </div>

@@ -1,4 +1,4 @@
-import { Project } from "./types";
+import { Project, ProjectTechnology } from "./types";
 import { github, openInNew, play } from "../../icons";
 import { seasonInfo, technologyInfo } from "./useProjects";
 import YoutubeEmbedModal from "../../components/YoutubeEmbed";
@@ -7,15 +7,24 @@ import ProjectCardBadge from "./ProjectCardBadge";
 
 interface Props {
   project: Project;
+  onTechnologySelect(technology: ProjectTechnology): void;
 }
 
-export default function ProjectCard({ project }: Props) {
+function classNames(names: (string | boolean | null | undefined)[]) {
+  return names
+    .filter((name) => {
+      return Boolean(name);
+    })
+    .join(" ");
+}
+
+export default function ProjectCard({ project, onTechnologySelect }: Props) {
   if (project.hidden) {
     return null;
   }
 
   return (
-    <div className="card">
+    <div className={classNames(["card", project.featured && "featured"])}>
       <div className="header">
         <div className="project-title">
           <ViewProject project={project} />
@@ -42,7 +51,11 @@ export default function ProjectCard({ project }: Props) {
             const info = technologyInfo(technology);
 
             return (
-              <span className="badge" style={{ ...info }}>
+              <span
+                className="badge clickable"
+                style={{ ...info }}
+                onClick={() => onTechnologySelect(technology)}
+              >
                 {info.name}
               </span>
             );

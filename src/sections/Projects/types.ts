@@ -1,5 +1,6 @@
 export interface Project {
   hidden?: boolean;
+  featured?: boolean;
   slug: string;
   name: string;
   synopsis: string;

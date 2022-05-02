@@ -23,10 +23,10 @@ const crc: CompanyDetails = {
   website: "http://www.crc.gc.ca",
 };
 
-const cbn: CompanyDetails = {
-  name: "Canadian Bank Note",
-  website: "https://www.cbnco.com",
-};
+// const cbn: CompanyDetails = {
+//   name: "Canadian Bank Note",
+//   website: "https://www.cbnco.com",
+// };
 
 export default function useProjects() {
   const projects: Project[] = [
@@ -34,7 +34,8 @@ export default function useProjects() {
       slug: "shopify-theme-finder",
       name: "Theme Picker",
       synopsis: "Discover your next new theme on the Shopify Theme Store.",
-      // hidden: true,
+      hidden: true,
+      // featured: true,
       madeIn: {
         year: 2022,
         season: "spring",
@@ -44,6 +45,19 @@ export default function useProjects() {
       company: shopify,
       url: "https://themes.shopify.com",
       gallery: [],
+    },
+    {
+      slug: "airing-manga",
+      name: '"Airing" manga',
+      synopsis:
+        "A very small service implemented for Dexify (mobile) to check which manga have an anime airing.",
+      hidden: true,
+      madeIn: {
+        year: 2022,
+        season: "winter",
+      },
+      technologies: ["ruby"],
+      tags: ["api"],
     },
     {
       slug: "dexify-mobile",
@@ -130,6 +144,18 @@ export default function useProjects() {
         link: "https://www.youtube.com/embed/xQeAJQJvhJM",
         embed: true,
       },
+    },
+    {
+      slug: "neets-tracker-bot",
+      name: "NEETs Tracker",
+      synopsis:
+        "A personal bot that tracks new songs posted by ActiveNEETs and Yorushika.",
+      tags: ["bot"],
+      technologies: ["rails"],
+      madeIn: {
+        year: 2020,
+      },
+      internal: true,
     },
     {
       slug: "yorushika-game",
@@ -361,7 +387,9 @@ export default function useProjects() {
     },
   ];
 
-  return projects;
+  return projects.sort((projectA, projectB) =>
+    String(projectB.madeIn.year).localeCompare(String(projectA.madeIn.year))
+  );
 }
 
 export function technologyInfo(technology: ProjectTechnology) {

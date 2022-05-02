@@ -58,7 +58,7 @@
 .listening-live .album-artist-info {
   display: block;
   font-size: small;
-  margin-top: -0.25em;
+  /* margin-top: -0.25em; */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

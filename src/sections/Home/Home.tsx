@@ -1,8 +1,10 @@
 import { useEffect, useRef } from "react";
+import { useDocumentTitle } from "../../components/DocumentTitle";
 import { Welcome } from "./components";
 import "./Home.css";
 
 export default function Home() {
+  useDocumentTitle({ title: "Welcome" });
   const backgroundRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

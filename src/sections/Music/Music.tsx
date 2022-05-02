@@ -1,5 +1,11 @@
-import { useArtists, useTracks } from "../../App/providers/MusicProvider";
+import { useContext } from "react";
+import {
+  MusicContext,
+  useArtists,
+  useTracks,
+} from "../../App/providers/MusicProvider";
 import { Header } from "../../components";
+import { useDocumentTitle } from "../../components/DocumentTitle";
 import { SpotifyResourceList, ListeningLive } from "./components";
 
 import "./Music.css";
@@ -27,6 +33,12 @@ export default function Music() {
   } = useTracks({
     top: 15,
     timeRange: "long",
+  });
+
+  const { track } = useContext(MusicContext);
+
+  useDocumentTitle({
+    title: track?.name ? `Playing ${track.name}` : "Spotify Corner",
   });
 
   return (

@@ -1,9 +1,12 @@
 import { MouseEventHandler, useEffect, useMemo, useRef, useState } from "react";
 import ProjectCard from "./ProjectCard";
-import useProjects from "./useProjects";
+import useProjects, { technologyInfo } from "./useProjects";
 
 import "./Projects.css";
 import { Header } from "../../components";
+import { filter } from "../../icons";
+import { ProjectTechnology } from "./types";
+import { useDocumentTitle } from "../../components/DocumentTitle";
 
 const tags = [
   {
@@ -33,16 +36,31 @@ const tags = [
 ];
 
 export default function Projects() {
+  useDocumentTitle({ title: "My projects" });
   const projects = useProjects();
   const [selected, setSelectedTags] = useState<string[]>([]);
   const [typedTag, setTypedTag] = useState<string>();
+  const [technologies, setTechnologies] = useState<ProjectTechnology[]>([]);
 
   const [input, setInput] = useState("");
 
   const filterInput = input.trim().toLocaleLowerCase();
 
+  const handleTechnologySelect = (selectedTechnology: ProjectTechnology) => {
+    if (!technologies.includes(selectedTechnology)) {
+      setTechnologies((current) => [...current, selectedTechnology]);
+    }
+  };
+
+  const handleTechnologyUnselect = (selectedTechnology: ProjectTechnology) => {
+    setTechnologies((current) =>
+      current.filter((technology) => technology !== selectedTechnology)
+    );
+  };
+
   const filteredProjects = useMemo(() => {
-    const filterApplied = selected.length > 0 || filterInput.length > 0;
+    const filterApplied =
+      selected.length > 0 || filterInput.length > 0 || technologies.length > 0;
 
     if (!filterApplied) {
       return projects;
@@ -63,8 +81,13 @@ export default function Projects() {
             project.synopsis.toLocaleLowerCase().includes(filterInput) ||
             project.description?.toLocaleLowerCase().includes(filterInput) ||
             project.slug.toLocaleLowerCase().includes(filterInput)
+      )
+      .filter((project) =>
+        technologies.length === 0
+          ? true
+          : intersect(project.technologies, technologies).length > 0
       );
-  }, [projects, filterInput, selected, typedTag]);
+  }, [projects, filterInput, selected, typedTag, technologies]);
 
   useEffect(() => {
     if (filterInput.length === 0) {
@@ -83,17 +106,54 @@ export default function Projects() {
       <Header />
       <section className="projects container">
         <h2 className="title">My projects</h2>
-        <input
-          type="text"
-          placeholder="Filter..."
-          className="filter"
-          value={input}
-          onInput={(e) => {
-            setInput((e.target as any).value);
-          }}
-        />
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <input
+            type="text"
+            placeholder="Search by name..."
+            className="filter"
+            value={input}
+            onInput={(e) => {
+              setInput((e.target as any).value);
+            }}
+            style={{ flexGrow: 1 }}
+          />
+          <button
+            className="button"
+            style={{
+              marginLeft: ".75rem",
+              borderRadius: 1024,
+              width: "2.75rem",
+              height: "2.75rem",
+              display: "none",
+            }}
+          >
+            <img
+              src={filter}
+              style={{
+                width: "1.5rem",
+                height: "1.5rem",
+              }}
+            />
+          </button>
+        </div>
         <div className="actions">
           <div className="tags-container">
+            {technologies.map((technology) => {
+              const info = technologyInfo(technology);
+
+              return (
+                <span
+                  className="badge clickable removable"
+                  style={{ ...info }}
+                  onClick={() => handleTechnologyUnselect(technology)}
+                  // onClick={() => onTechnologySelect(technology)}
+                >
+                  {info.name}
+                </span>
+              );
+            })}
+          </div>
+          <div className="tags-container" style={{ display: "none" }}>
             {tags.map((tag) => (
               <Tag
                 key={tag.slug}
@@ -123,7 +183,11 @@ export default function Projects() {
         </div>
         <div className="results grid">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+            <ProjectCard
+              key={project.slug}
+              project={project}
+              onTechnologySelect={handleTechnologySelect}
+            />
           ))}
         </div>
       </section>
