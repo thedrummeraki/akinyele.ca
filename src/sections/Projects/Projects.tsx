@@ -1,4 +1,4 @@
-import { MouseEventHandler, useEffect, useMemo, useRef, useState } from "react";
+import { MouseEventHandler, useEffect, useMemo, useState } from "react";
 import ProjectCard from "./ProjectCard";
 import useProjects, { technologyInfo } from "./useProjects";
 
@@ -133,6 +133,7 @@ export default function Projects() {
                 width: "1.5rem",
                 height: "1.5rem",
               }}
+              alt="Filter"
             />
           </button>
         </div>

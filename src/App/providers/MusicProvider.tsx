@@ -91,6 +91,7 @@ export function useArtists() {
       .finally(() => setLoading(false));
   };
 
+  // eslint-disable-next-line
   useEffect(fetchArtists, []);
 
   return { loading, artists, error };
@@ -119,6 +120,7 @@ export function useTracks({ top, timeRange }: TracksProps) {
       .finally(() => setLoading(false));
   };
 
+  // eslint-disable-next-line
   useEffect(fetchTracks, []);
 
   return { loading, tracks, error };
@@ -142,6 +144,7 @@ function useCurrentTrack() {
       .finally(() => setLoading(false));
   };
 
+  // eslint-disable-next-line
   useEffect(checkCurrentTrack, []);
   useInterval(checkCurrentTrack, 1000);
 

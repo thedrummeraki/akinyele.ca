@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { MusicContext } from "../../../App/providers/MusicProvider";
-import { pause, play } from "../../../icons";
+// import { pause, play } from "../../../icons";
 import { TrackArtist } from "../types";
 
 import "./ListeningLive.css";
@@ -13,11 +13,11 @@ export default function ListeningLive() {
     return null;
   }
 
-  const iconMarkup = track.playing ? (
-    <img src={pause} alt="Playing" className="icon" />
-  ) : (
-    <img src={play} alt="Paused" className="icon" />
-  );
+  // const iconMarkup = track.playing ? (
+  //   <img src={pause} alt="Playing" className="icon" />
+  // ) : (
+  //   <img src={play} alt="Paused" className="icon" />
+  // );
 
   return (
     <div className={`listening-live${isMobile ? " mobile" : ""}`}>

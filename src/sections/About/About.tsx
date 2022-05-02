@@ -27,7 +27,11 @@ export default function About() {
       </section>
       <section className="container" style={{ height: "100vh" }}>
         <h2>About me</h2>
-        <img src={myFace} style={{ height: 200, width: 200 }} />
+        <img
+          src={myFace}
+          style={{ height: 200, width: 200 }}
+          alt="Akinyele Cafe-Febrissy"
+        />
         <p>
           Behind technology, there is software... behind software, there are
           humans. I am fascinated by the philosophy of Continuous Improvement,
