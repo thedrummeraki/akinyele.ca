@@ -99,7 +99,7 @@ export default function useProjects() {
     },
     {
       slug: "shopify-partners-store-access",
-      name: "Sensitive permissions for Partners accounts",
+      name: "Sensitive permissions for Shopify Partners",
       synopsis:
         "Manage your staff's permissions on the Shopify Partners dashboard.",
       madeIn: {
