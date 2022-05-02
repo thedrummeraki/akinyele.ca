@@ -31,19 +31,18 @@ const crc: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
-      slug: "shopify-theme-finder",
+      slug: "hidden-project",
       name: "Theme Picker",
-      synopsis: "Discover your next new theme on the Shopify Theme Store.",
+      synopsis: "",
       hidden: true,
-      // featured: true,
+      featured: true,
       madeIn: {
         year: 2022,
         season: "spring",
       },
       tags: ["web"],
       technologies: ["react", "rails"],
-      company: shopify,
-      url: "https://themes.shopify.com",
+      url: "https://comingsoon.com",
       gallery: [],
     },
     {
@@ -103,7 +102,6 @@ export default function useProjects() {
       name: "Sensitive permissions for Partners accounts",
       synopsis:
         "Manage your staff's permissions on the Shopify Partners dashboard.",
-      // hidden: true,
       madeIn: {
         year: 2021,
         season: "spring",
@@ -275,7 +273,6 @@ export default function useProjects() {
       name: "Internal Database Management",
       synopsis:
         "Upgraded and improved Rakuten's internal Database management system",
-      // hidden: true,
       madeIn: {
         year: 2018,
         season: "spring",
