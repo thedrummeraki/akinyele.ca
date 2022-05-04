@@ -1,6 +1,6 @@
-import { useContext, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import { MusicContext } from "../../../../App/providers/MusicProvider";
+import { useCurrentTrack } from "../../../../App/providers/MusicProvider";
 import {
   email,
   github,
@@ -28,7 +28,7 @@ interface Props {
 
 export default function Welcome({ onWelcomed }: Props) {
   const greeting = useGreeting();
-  const { track } = useContext(MusicContext);
+  const { track } = useCurrentTrack();
 
   const greetingRef = useRef<HTMLHeadingElement>(null);
   const nameRef = useRef<HTMLHeadingElement>(null);

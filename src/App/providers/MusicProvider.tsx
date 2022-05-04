@@ -16,16 +16,32 @@ import {
 export const MusicContext = React.createContext<{
   track: CurrentTrack | undefined;
   loading: boolean;
-}>({ track: undefined, loading: false });
+  setTrack: (track: CurrentTrack | undefined) => void;
+  setLoading: (loading: boolean) => void;
+}>({
+  track: undefined,
+  loading: false,
+  setTrack: () => {},
+  setLoading: () => {},
+});
 
 export default function MusicProvider({ children }: PropsWithChildren<{}>) {
-  const { track, loading } = useCurrentTrack();
+  const [track, setTrack] = useState<CurrentTrack | undefined>(undefined);
+  const [loading, setLoading] = useState(false);
 
   return (
-    <MusicContext.Provider value={{ track, loading }}>
+    <MusicContext.Provider value={{ track, loading, setTrack, setLoading }}>
       {children}
     </MusicContext.Provider>
   );
+}
+
+export function useMusicContext() {
+  const context = useContext(MusicContext);
+  return {
+    track: context.track,
+    loading: context.loading,
+  };
 }
 
 export async function fetchSpotifyInfo<T>(path: string) {
@@ -126,9 +142,8 @@ export function useTracks({ top, timeRange }: TracksProps) {
   return { loading, tracks, error };
 }
 
-function useCurrentTrack() {
-  const [track, setTrack] = useState<CurrentTrack>();
-  const [loading, setLoading] = useState(false);
+export function useCurrentTrack() {
+  const { track, setTrack, loading, setLoading } = useContext(MusicContext);
 
   const checkCurrentTrack = () => {
     if (loading) return;
@@ -147,6 +162,11 @@ function useCurrentTrack() {
   // eslint-disable-next-line
   useEffect(checkCurrentTrack, []);
   useInterval(checkCurrentTrack, 1000);
+
+  // useEffect(() => {
+  //   setLoading(loading);
+  //   setTrack(track);
+  // }, [track, loading]);
 
   return { loading, track };
 }

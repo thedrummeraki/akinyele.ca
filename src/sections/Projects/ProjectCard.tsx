@@ -4,6 +4,7 @@ import { seasonInfo, technologyInfo } from "./useProjects";
 import YoutubeEmbedModal from "../../components/YoutubeEmbed";
 import { Link } from "react-router-dom";
 import ProjectCardBadge from "./ProjectCardBadge";
+import { Tag, TagsContainer } from "../../components";
 
 interface Props {
   project: Project;
@@ -39,7 +40,7 @@ export default function ProjectCard({ project, onTechnologySelect }: Props) {
           <WatchDemo project={project} />
           <GithubLink project={project} />
         </div>
-        <div className="tags">
+        <TagsContainer>
           {project.internal && (
             <ProjectCardBadge
               text="Internal"
@@ -48,16 +49,14 @@ export default function ProjectCard({ project, onTechnologySelect }: Props) {
             />
           )}
           {project.technologies.map((technology) => {
-            const info = technologyInfo(technology);
+            const { name, ...style } = technologyInfo(technology);
 
             return (
-              <span
-                className="badge clickable"
-                style={{ ...info }}
+              <Tag
+                name={name}
+                style={style}
                 onClick={() => onTechnologySelect(technology)}
-              >
-                {info.name}
-              </span>
+              />
             );
           })}
           {project.hackathon && (
@@ -67,7 +66,7 @@ export default function ProjectCard({ project, onTechnologySelect }: Props) {
               border="1px solid #ffff0066"
             />
           )}
-        </div>
+        </TagsContainer>
       </div>
     </div>
   );
@@ -109,35 +108,33 @@ function ViewProject({ project }: { project: Project }) {
 
   const title = "Open " + project.name;
 
-  if (!projectUrl) {
-    return <span className="title">{project.name}</span>;
-  }
-
-  const linkContentsMarkup = (
-    <div className="clickable-title">
+  const linkToProjectMarkup = (
+    <Link to={getProjectLinkTo(project)}>
       <span className="title">{project.name}</span>
-      <img src={openInNew} className="icon" alt={title} />
-    </div>
+    </Link>
   );
 
-  if (project.internalUrl) {
-    return (
-      <Link to={project.internalUrl} className="link">
-        {linkContentsMarkup}
-      </Link>
-    );
+  if (!projectUrl) {
+    return linkToProjectMarkup;
   }
 
+  // if (project.internalUrl) {
+  //   return (
+  //     <Link to={project.internalUrl} className="link">
+  //       {linkContentsMarkup}
+  //     </Link>
+  //   );
+  // }
+
   return (
-    <a
-      className="link"
-      href={projectUrl}
-      target={"_blank"}
-      rel="noreferrer"
-      title={title}
-    >
-      {linkContentsMarkup}
-    </a>
+    <div className="clickable-title">
+      {linkToProjectMarkup}
+      {/* {!project.internalUrl && (
+        <a href={projectUrl} target="_blank" rel="noreferrer" title="title">
+          <img src={openInNew} className="icon" alt={title} />
+        </a>
+      )} */}
+    </div>
   );
 }
 
@@ -168,4 +165,8 @@ function useGithubUrl(project: Project) {
       : `https://github.com/thedrummeraki/${project.slug}`;
   }
   return null;
+}
+
+function getProjectLinkTo(project: Project) {
+  return `/projects/${project.slug}`;
 }

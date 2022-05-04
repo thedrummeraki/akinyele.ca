@@ -11,6 +11,7 @@ export { default as spotifyOffline } from "./spotify_off.svg";
 export { default as openInNew } from "./open_in_new.svg";
 export { default as youtube } from "./youtube.svg";
 export { default as filter } from "./filter.svg";
+export { default as back } from "./back.svg";
 
 // Companies
 export { default as shopify } from "./shopify.svg";

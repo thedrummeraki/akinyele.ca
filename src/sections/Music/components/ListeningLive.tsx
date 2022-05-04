@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { MusicContext } from "../../../App/providers/MusicProvider";
+import { useMusicContext } from "../../../App/providers/MusicProvider";
 // import { pause, play } from "../../../icons";
 import { TrackArtist } from "../types";
 
 import "./ListeningLive.css";
 
 export default function ListeningLive() {
-  const { track } = useContext(MusicContext);
+  const { track } = useMusicContext();
   const isMobile = useCurrentWidth() < 768;
 
   if (!track || !track.album || !track.artists) {

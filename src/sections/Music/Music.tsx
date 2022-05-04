@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import {
-  MusicContext,
   useArtists,
+  useCurrentTrack,
   useTracks,
 } from "../../App/providers/MusicProvider";
 import { Header } from "../../components";
@@ -35,7 +35,7 @@ export default function Music() {
     timeRange: "long",
   });
 
-  const { track } = useContext(MusicContext);
+  const { track } = useCurrentTrack();
 
   useDocumentTitle({
     title: track?.name ? `Playing ${track.name}` : "Spotify Corner",
