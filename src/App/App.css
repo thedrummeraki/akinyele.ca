@@ -42,16 +42,17 @@ section {
 }
 
 .button {
+  text-decoration: none;
   padding: 0.75em;
-  border: 1px solid #111;
+  border: 1px solid #222;
   border-radius: 10px;
   outline: none;
-  background-color: rgba(17, 17, 17, 1);
+  background-color: #222;
   color: #ddd;
   transition: 0.5s;
 }
 
-.button.selected {
+/* .button.selected {
   background-color: #333;
   color: #fff;
   font-weight: 500;
@@ -61,22 +62,31 @@ section {
 .button:not(.selected):active {
   background-color: #222;
   color: #eee;
-}
+} */
 
 .button:hover {
-  background-color: rgba(17, 17, 17, 0.6);
+  background-color: #333;
   cursor: pointer;
+}
+
+.button:active {
+  background-color: #111;
+  cursor: pointer;
+}
+
+.button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(150,150,150, 0.4);
 }
 
 .button.scale-up-on-hover:hover {
   transform: scale(1.05);
 }
 
-.grid {
+/* .grid {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(2, 1fr);
-}
+} */
 
 .card {
   border-radius: 0.5em;
@@ -131,52 +141,52 @@ section {
 
 /* Smaller devices (phones, 600px and down) */
 @media only screen and (max-width: 450px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(1, 1fr);
-  }
+  } */
 }
 
 @media only screen and (min-width: 450px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(3, 1fr);
-  }
+  } */
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(4, 1fr);
-  }
+  } */
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(5, 1fr);
-  }
+  } */
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1600px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(6, 1fr);
-  }
+  } */
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1215px) {
+@media only screen and (min-width: 1024px) {
   .container {
     max-width: 960px;
   }
 }
 
-@media only screen and (min-width: 1216px) and (max-width: 1407px) {
+/* @media only screen and (min-width: 1216px) and (max-width: 1407px) {
   .container {
     max-width: 1152px;
   }
@@ -186,4 +196,4 @@ section {
   .container {
     max-width: 1344px;
   }
-}
+} */

@@ -1,23 +1,17 @@
-import React, { useContext, useEffect, useState } from "react";
-import { MusicContext } from "../../../App/providers/MusicProvider";
+import React, { useEffect, useState } from "react";
+import { useMusicContext } from "../../../App/providers/MusicProvider";
 // import { pause, play } from "../../../icons";
 import { TrackArtist } from "../types";
 
 import "./ListeningLive.css";
 
 export default function ListeningLive() {
-  const { track } = useContext(MusicContext);
+  const { track } = useMusicContext();
   const isMobile = useCurrentWidth() < 768;
 
   if (!track || !track.album || !track.artists) {
     return null;
   }
-
-  // const iconMarkup = track.playing ? (
-  //   <img src={pause} alt="Playing" className="icon" />
-  // ) : (
-  //   <img src={play} alt="Paused" className="icon" />
-  // );
 
   return (
     <div className={`listening-live${isMobile ? " mobile" : ""}`}>

@@ -1,0 +1,96 @@
+.all-projects .table {
+  display: grid;
+  gap: 2px;
+  margin-bottom: 6rem;
+}
+
+.all-projects .table .row {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  gap: 0.5rem;
+}
+
+.all-projects .table .row.project {
+  background-color: #1a1a1a;
+}
+
+.all-projects .table .row.project:hover {
+  background-color: #333;
+}
+
+.all-projects .table .name {
+  grid-column: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+}
+
+.all-projects .table .name .synopsis {
+  font-size: x-small;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.all-projects .table .link {
+  display: flex;
+  gap: 5px;
+}
+
+.all-projects .table .row > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.all-projects .table .row .link {
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+}
+
+/* Smaller devices (phones, 450px and down) */
+@media only screen and (max-width: 450px) {
+  .all-projects .table .row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .all-projects .table .row .tech,
+  .all-projects .table .row .company {
+    display: none;
+  }
+}
+
+/* Smaller devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  .all-projects .table .row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .all-projects .table .row .tech,
+  .all-projects .table .row .company {
+    display: none;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+  .all-projects .table .row {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .all-projects .table .row .company {
+    display: none;
+  }
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+  .all-projects .table .row {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  .all-projects .table .row .company {
+    display: flex;
+  }
+}
