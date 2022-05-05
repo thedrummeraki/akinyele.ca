@@ -1,7 +1,7 @@
 import { Header, IconLink, Tag, TagsContainer } from "../../components";
 import BackButton from "../../components/BackButton";
 import YoutubeEmbedModal from "../../components/YoutubeEmbed";
-import { done, github, openInNew, pause, play, stop, view } from "../../icons";
+import { done, github, openInNew, pause, play, close, view } from "../../icons";
 import { projectGithubUrl } from "../../utils";
 import { Project } from "../Projects/types";
 import useProjects, { technologyInfo } from "../Projects/useProjects";
@@ -20,7 +20,7 @@ export default function ViewAllProjects() {
       case "paused":
         return pause;
       case "stopped":
-        return stop;
+        return close;
     }
   };
 

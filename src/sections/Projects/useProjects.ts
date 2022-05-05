@@ -256,7 +256,7 @@ export default function useProjects() {
       status: "stopped",
       synopsis:
         "An unofficial alternative Manga reader. Powered by Mangadex.org.",
-      url: "https://dexify.herokuapp.com",
+      // url: "https://dexify.herokuapp.com",
       tags: ["web"],
       technologies: ["rails"],
       madeIn: {
@@ -348,6 +348,7 @@ export default function useProjects() {
       },
       internal: true,
       hackathon: true,
+      company: shopify,
       tags: ["web"],
       technologies: ["react", "rails"],
     },
@@ -394,7 +395,6 @@ export default function useProjects() {
       technologies: ["rails", "python"],
       internal: true,
       company: rakuten,
-      url: "https://shopify.com/partners",
       gallery: [],
     },
     {

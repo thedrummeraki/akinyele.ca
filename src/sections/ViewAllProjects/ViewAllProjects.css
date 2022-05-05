@@ -1,6 +1,5 @@
 .all-projects .table {
   display: grid;
-  gap: 2px;
   margin-bottom: 6rem;
 }
 
@@ -12,9 +11,9 @@
   gap: 0.5rem;
 }
 
-.all-projects .table .row.project {
+/* .all-projects .table .row.project {
   background-color: #1a1a1a;
-}
+} */
 
 .all-projects .table .row.project:hover {
   background-color: #333;

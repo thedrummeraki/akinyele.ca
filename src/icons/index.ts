@@ -14,6 +14,7 @@ export { default as openInNew } from "./open_in_new.svg";
 export { default as youtube } from "./youtube.svg";
 export { default as filter } from "./filter.svg";
 export { default as back } from "./back.svg";
+export { default as close } from "./close.svg";
 
 // Companies
 export { default as shopify } from "./shopify.svg";
