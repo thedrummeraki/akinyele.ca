@@ -1,14 +1,32 @@
 import { Link } from "react-router-dom";
 import { TagsContainer, Tag } from "../../components";
+import ImageGallery from "../../components/ImageGallery";
 import { back } from "../../icons";
 import { Project } from "../Projects/types";
 import { technologyInfo } from "../Projects/useProjects";
+
+import "react-image-gallery/styles/css/image-gallery.css";
 
 interface Props {
   project: Project;
 }
 
 export default function ViewProjectDetails({ project }: Props) {
+  const images = [
+    {
+      original: "https://picsum.photos/id/1018/1000/600/",
+      thumbnail: "https://picsum.photos/id/1018/250/150/",
+    },
+    {
+      original: "https://picsum.photos/id/1015/1000/600/",
+      thumbnail: "https://picsum.photos/id/1015/250/150/",
+    },
+    {
+      original: "https://picsum.photos/id/1019/1000/600/",
+      thumbnail: "https://picsum.photos/id/1019/250/150/",
+    },
+  ];
+
   return (
     <section className="container project">
       <div style={{ display: "flex", alignItems: "center" }}>
@@ -32,7 +50,9 @@ export default function ViewProjectDetails({ project }: Props) {
         })}
       </TagsContainer> */}
 
-      {project.watchDemo?.embed && (
+      <div className="section">{/* <ImageGallery items={images} /> */}</div>
+
+      {/* {project.watchDemo?.embed && (
         <div className="section">
           <div style={{ width: "70%", height: 400, margin: "0 auto" }}>
             <iframe
@@ -45,7 +65,7 @@ export default function ViewProjectDetails({ project }: Props) {
             ></iframe>
           </div>
         </div>
-      )}
+      )} */}
     </section>
   );
 }

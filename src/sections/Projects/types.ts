@@ -1,4 +1,4 @@
-export interface Project {
+export interface BasicProject {
   hidden?: boolean;
   featured?: boolean;
   slug: string;
@@ -21,6 +21,14 @@ export interface Project {
     link: string;
   };
 }
+
+export interface FeaturedProject extends BasicProject {
+  featured?: true;
+  mobileImage?: string;
+  desktopImage?: string;
+}
+
+export type Project = BasicProject & FeaturedProject;
 
 export type ProjectTag = "web" | "mobile" | "bot" | "api" | "library" | "game";
 export type Season = "fall" | "winter" | "spring" | "summer";

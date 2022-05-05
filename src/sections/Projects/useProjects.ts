@@ -1,4 +1,10 @@
 import {
+  youranimeAccountsDesktop,
+  youranimeDesktop,
+  youranimeMobile,
+  dexifyMobileDesktopIntro,
+} from "../../images";
+import {
   CompanyDetails,
   Project,
   ProjectMadeInfo,
@@ -62,6 +68,8 @@ export default function useProjects() {
       slug: "dexify-mobile",
       name: "Dexify (mobile)",
       synopsis: "Unofficial Mangadex.org mobile client.",
+      featured: true,
+      desktopImage: dexifyMobileDesktopIntro,
       madeIn: {
         year: 2021,
         season: "fall",
@@ -116,6 +124,9 @@ export default function useProjects() {
       slug: "youranime",
       name: "YourAnime.moe",
       synopsis: "The next go-to anime streaming information website.",
+      featured: true,
+      mobileImage: youranimeMobile,
+      desktopImage: youranimeDesktop,
       madeIn: {
         year: 2016,
       },
@@ -196,8 +207,10 @@ export default function useProjects() {
       github: true,
     },
     {
-      slug: "oauth-server",
-      name: "YourAnime ID (Misete Accounts)",
+      slug: "youranime-id",
+      name: "YourAnime ID",
+      featured: true,
+      desktopImage: youranimeAccountsDesktop,
       synopsis:
         "A custom-made OAuth (authentication) server for all of my apps.",
       madeIn: {

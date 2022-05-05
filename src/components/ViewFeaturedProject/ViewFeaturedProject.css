@@ -1,0 +1,94 @@
+.view-featured-project {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.view-featured-project .image {
+  position: relative;
+  grid-column: 1 / 3;
+}
+
+.view-featured-project .details {
+  position: relative;
+  grid-column: 3 / 4;
+}
+
+.view-featured-project:nth-child(even) .image {
+  grid-column: 2 / 4;
+}
+
+.view-featured-project:nth-child(even) .details {
+  grid-column: 1 / 2;
+  grid-row-start: 1;
+}
+
+.view-featured-project .details {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1.5rem;
+  justify-content: center;
+  /* display: "flex",
+  flexDirection: "column",
+  padding: "1rem",
+  gap: "1.5rem",
+  zIndex: 1,
+  justifyContent: "center", */
+}
+
+.view-featured-project .details .title-and-year {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin: .75rem 0;
+}
+
+.view-featured-project .details .title-and-year .title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.view-featured-project .details .title-and-year .year {
+  font-size: x-small;
+}
+
+.view-featured-project .details .title-and-year .year .started-in {
+  color: #777;
+}
+
+.view-featured-project .image .overlay {
+  background-color: #111;
+  position: absolute;
+  inset: 0;
+  opacity: 0.3;
+  z-index: 1;
+  transition: opacity .3s ease-in-out;
+}
+
+.view-featured-project .image img {
+  object-fit: cover;
+  transition: transform .3s ease-in-out;
+}
+
+.view-featured-project .image:hover img {
+  transform: scale(1.005);
+}
+
+.view-featured-project .image:hover .overlay {
+  opacity: 0;
+}
+
+/* .view-featured-project .images {
+  grid-column: 1 / 3;
+}
+
+.view-featured-project .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+} */
+
+.desktop {
+  filter: drop-shadow(-5px 0 5px #222);
+}

@@ -8,6 +8,7 @@ import { Tag, TagsContainer } from "../../components";
 
 interface Props {
   project: Project;
+  showDescription?: boolean;
   onTechnologySelect(technology: ProjectTechnology): void;
 }
 
@@ -19,22 +20,28 @@ function classNames(names: (string | boolean | null | undefined)[]) {
     .join(" ");
 }
 
-export default function ProjectCard({ project, onTechnologySelect }: Props) {
+export default function ProjectCard({
+  project,
+  showDescription,
+  onTechnologySelect,
+}: Props) {
   if (project.hidden) {
     return null;
   }
 
   return (
-    <div className={classNames(["card", project.featured && "featured"])}>
+    <div className="card">
       <div className="header">
         <div className="project-title">
           <ViewProject project={project} />
           <ProjectYear project={project} />
         </div>
       </div>
-      <div className="body">
-        <small className="description">{project.synopsis}</small>
-      </div>
+      {showDescription && (
+        <div className="body">
+          <small className="description">{project.synopsis}</small>
+        </div>
+      )}
       <div className="footer">
         <div className="icons">
           <WatchDemo project={project} />
@@ -53,6 +60,7 @@ export default function ProjectCard({ project, onTechnologySelect }: Props) {
 
             return (
               <Tag
+                key={name}
                 name={name}
                 style={style}
                 onClick={() => onTechnologySelect(technology)}

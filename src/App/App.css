@@ -72,11 +72,10 @@ section {
   transform: scale(1.05);
 }
 
-.grid {
+/* .grid {
   display: grid;
   gap: 10px;
-  grid-template-columns: repeat(2, 1fr);
-}
+} */
 
 .card {
   border-radius: 0.5em;
@@ -131,52 +130,52 @@ section {
 
 /* Smaller devices (phones, 600px and down) */
 @media only screen and (max-width: 450px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(1, 1fr);
-  }
+  } */
 }
 
 @media only screen and (min-width: 450px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(2, 1fr);
-  }
+  } */
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(3, 1fr);
-  }
+  } */
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(4, 1fr);
-  }
+  } */
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(5, 1fr);
-  }
+  } */
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1600px) {
-  .grid {
+  /* .grid {
     grid-template-columns: repeat(6, 1fr);
-  }
+  } */
 }
 
-@media only screen and (min-width: 1024px) and (max-width: 1215px) {
+@media only screen and (min-width: 1024px) {
   .container {
     max-width: 960px;
   }
 }
 
-@media only screen and (min-width: 1216px) and (max-width: 1407px) {
+/* @media only screen and (min-width: 1216px) and (max-width: 1407px) {
   .container {
     max-width: 1152px;
   }
@@ -186,4 +185,4 @@ section {
   .container {
     max-width: 1344px;
   }
-}
+} */

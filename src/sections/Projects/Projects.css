@@ -62,8 +62,8 @@
   opacity: 1;
 }
 
-.projects .card.featured {
-  grid-column: span 2;
+.projects .card {
+  height: 100%;
 }
 
 .projects .card .project-title {

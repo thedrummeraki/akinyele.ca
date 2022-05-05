@@ -3,7 +3,7 @@ import ProjectCard from "./ProjectCard";
 import useProjects, { technologyInfo } from "./useProjects";
 
 import "./Projects.css";
-import { Header } from "../../components";
+import { Grid, Header, ViewFeaturedProject } from "../../components";
 import { filter } from "../../icons";
 import { ProjectTechnology } from "./types";
 import { useDocumentTitle } from "../../components/DocumentTitle";
@@ -38,6 +38,14 @@ const tags = [
 export default function Projects() {
   useDocumentTitle({ title: "My projects" });
   const projects = useProjects();
+  const featuredProjects = projects.filter(
+    (project) => project.featured && !project.hidden
+  );
+
+  const mostRecentProjects = projects
+    .filter((project) => !project.featured && !project.hidden)
+    .slice(0, 5);
+
   const [selected, setSelectedTags] = useState<string[]>([]);
   const [typedTag, setTypedTag] = useState<string>();
   const [technologies, setTechnologies] = useState<ProjectTechnology[]>([]);
@@ -106,7 +114,7 @@ export default function Projects() {
       <Header />
       <section className="projects container">
         <h2 className="title">My projects</h2>
-        <div style={{ display: "flex", alignItems: "center" }}>
+        <div style={{ display: "none", alignItems: "center" }}>
           <input
             type="text"
             placeholder="Search by name..."
@@ -144,6 +152,7 @@ export default function Projects() {
 
               return (
                 <span
+                  key={technology}
                   className="badge clickable removable"
                   style={{ ...info }}
                   onClick={() => handleTechnologyUnselect(technology)}
@@ -182,7 +191,7 @@ export default function Projects() {
             </button>
           </div>
         </div>
-        <div className="results grid">
+        <div className="results grid" style={{ display: "none" }}>
           {filteredProjects.map((project) => (
             <ProjectCard
               key={project.slug}
@@ -190,6 +199,35 @@ export default function Projects() {
               onTechnologySelect={handleTechnologySelect}
             />
           ))}
+        </div>
+        <div
+          className="featured-projects"
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "4rem",
+            marginBottom: "5rem",
+          }}
+        >
+          {featuredProjects.map((project) => (
+            <ViewFeaturedProject key={project.slug} project={project} />
+          ))}
+        </div>
+        <div
+          className="projects container"
+          style={{
+            marginBottom: "10rem",
+          }}
+        >
+          <h2 className="title">Most recent projects</h2>
+
+          <Grid>
+            {mostRecentProjects.map((project) => (
+              <Grid.Item key={project.slug}>
+                <ProjectCard project={project} onTechnologySelect={() => {}} />
+              </Grid.Item>
+            ))}
+          </Grid>
         </div>
       </section>
     </>

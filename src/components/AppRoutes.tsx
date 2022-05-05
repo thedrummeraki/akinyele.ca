@@ -15,18 +15,14 @@ export default function AppRoutes() {
 
   return (
     <MusicProvider>
-      <TransitionGroup component={null}>
-        <CSSTransition key={location.key} classNames="my-node" timeout={500}>
-          <Routes location={location}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/projects/:slug" element={<ViewProject />} />
-            <Route path="/music" element={<Music />} />
-            <Route path="/dexify/privacy" element={<DexifyPrivacyPolicy />} />
-          </Routes>
-        </CSSTransition>
-      </TransitionGroup>
+      <Routes location={location}>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/projects" element={<Projects />} />
+        <Route path="/projects/:slug" element={<ViewProject />} />
+        <Route path="/music" element={<Music />} />
+        <Route path="/dexify/privacy" element={<DexifyPrivacyPolicy />} />
+      </Routes>
     </MusicProvider>
   );
 }
