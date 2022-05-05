@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { github, openInNew } from "../../icons";
 import { Project } from "../Projects/types";
 
-import "react-image-gallery/styles/css/image-gallery.css";
 import { useGithubUrl } from "../../utils";
 import { Tag, TagsContainer } from "../../components";
 import BackButton from "../../components/BackButton";

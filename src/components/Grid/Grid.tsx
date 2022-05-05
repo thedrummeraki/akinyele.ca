@@ -1,7 +1,6 @@
 import React from "react";
 import "./Grid.css";
 
-import { v4 as uuid } from "uuid";
 import { Item } from "./Item";
 
 export const GridContext = React.createContext<{ id: string }>({ id: "" });
@@ -15,13 +14,9 @@ export const GridContext = React.createContext<{ id: string }>({ id: "" });
 // }
 
 function GridProvider({ children }: React.PropsWithChildren<{}>) {
-  const id = uuid();
-
   return (
-    <GridContext.Provider value={{ id }}>
-      <div key={`grid-${id}`} className="grid">
-        {children}
-      </div>
+    <GridContext.Provider value={{ id: "" }}>
+      <div className="grid">{children}</div>
     </GridContext.Provider>
   );
 }
