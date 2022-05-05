@@ -68,16 +68,38 @@ export default function useProjects() {
       slug: "dexify-mobile",
       name: "Dexify (mobile)",
       synopsis: "Unofficial Mangadex.org mobile client.",
+      beta: true,
       featured: true,
       desktopImage: dexifyMobileDesktopIntro,
       madeIn: {
         year: 2021,
         season: "fall",
       },
+      watchDemo: {
+        embed: true,
+        link: "https://www.youtube.com/embed/6Mx_Xhm7YnI",
+      },
       tags: ["mobile"],
       technologies: ["react-native", "node", "ruby"],
       github: true,
       url: "https://github.com/thedrummeraki/dexify-mobile/releases",
+      description: {
+        normal:
+          "A mobile app that allows users to read manga hosted by Mangadex.org. " +
+          "Development started in late 2021 after I wanted to provide a way to natively " +
+          "ready manga on any Android and iOS device. This is a perfect opportunity to " +
+          "learn about React Native.",
+        technical:
+          "The app is primarily built with React Native. A node.js server acts as a " +
+          "proxy to the Mangadex API. An additional service built using Ruby returns a list of " +
+          "manga that have an airing anime. I get this information from my YourAnime.moe API. " +
+          "Dog fooding for the win!",
+        challenges:
+          "Implementing the manga reader was the most difficult part of the project. " +
+          "I stepped out of my comfort zone and learn about animations which is something I had" +
+          "always gone to great lengths to avoid. Image performance also was taken into account ." +
+          "Unfortunately, I didn't manage to optimize the manga reader for iOS devices. ",
+      },
     },
     {
       slug: "weather-recommendations-shop-mini",
@@ -137,6 +159,30 @@ export default function useProjects() {
       watchDemo: {
         link: "https://www.youtube.com/embed/1ShelOHqjUE",
         embed: true,
+      },
+      description: {
+        // todo: improve text below
+        normal:
+          "A platform that provides anime streaming information, namely when any anime " +
+          "is airing and on which platforms it's known to be airing on. I built this project " +
+          "to promote legally watch anime online. Over the 5+ years I've been working on this, " +
+          "it's been very a humbling experience to see how other platforms work and how I can " +
+          "improve mine. " +
+          "Originally, this platform was a streaming anime platform I built to watch anime with " +
+          "loved ones. Streaming, although not available to the public, licensed media is usually " +
+          "not legal without a proper license. This, maintenance and cost pushed me to convert " +
+          "the app to an anime information platform.",
+        technical:
+          "This project was originally called My Akinyele and was running Rails 4. In January " +
+          "2017, I pivoted to Slim and the heavy use of Bootstrap. This was a great opportunity " +
+          "to introduce a better overall code architecture: following Rails conventions and the use " +
+          "of proper HTTP verbs. Not long after in July 2017, I discoved Materialize CSS and switched " +
+          "from Bootstrap. It was not a tremendous change, as the CSS classes were similar to Bootstrap. " +
+          "Following a hiatus for about 1 year, the project was reborn as YourAnime.moe in June 2019. " +
+          "I converted to Rails app into a GraphQL API and developed a React frontend, using Material UI. " +
+          "A proxy server is present to allow the client to access the API as well as handle caching and " +
+          "authentication. I learnt that it's not standard to handle authentication at this level, so one " +
+          "the future is to decouple the authentication from the proxy server.",
       },
     },
     {

@@ -43,7 +43,9 @@ export default function ViewProject() {
 
 export function useProject(slug: string | undefined) {
   const projects = useProjects();
-  const project = projects.find((p) => p.slug === slug);
+  const project = projects.find(
+    (p) => p.slug === slug && !p.hidden && p.featured
+  );
 
   return project || null;
 }

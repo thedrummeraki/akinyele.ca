@@ -5,6 +5,7 @@ import YoutubeEmbedModal from "../../components/YoutubeEmbed";
 import { Link } from "react-router-dom";
 import ProjectCardBadge from "./ProjectCardBadge";
 import { Tag, TagsContainer } from "../../components";
+import { useGithubUrl } from "../../utils";
 
 interface Props {
   project: Project;
@@ -47,7 +48,7 @@ export default function ProjectCard({
           <WatchDemo project={project} />
           <GithubLink project={project} />
         </div>
-        <TagsContainer>
+        {/* <TagsContainer>
           {project.internal && (
             <ProjectCardBadge
               text="Internal"
@@ -74,7 +75,7 @@ export default function ProjectCard({
               border="1px solid #ffff0066"
             />
           )}
-        </TagsContainer>
+        </TagsContainer> */}
       </div>
     </div>
   );
@@ -164,15 +165,6 @@ function WatchDemo({ project }: { project: Project }) {
       <img src={play} className="icon" alt={title} />
     </a>
   );
-}
-
-function useGithubUrl(project: Project) {
-  if (project.github) {
-    return typeof project.github === "string"
-      ? project.github
-      : `https://github.com/thedrummeraki/${project.slug}`;
-  }
-  return null;
 }
 
 function getProjectLinkTo(project: Project) {

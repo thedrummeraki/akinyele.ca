@@ -87,7 +87,6 @@ export default function Projects() {
           ? true
           : project.name.toLocaleLowerCase().includes(filterInput) ||
             project.synopsis.toLocaleLowerCase().includes(filterInput) ||
-            project.description?.toLocaleLowerCase().includes(filterInput) ||
             project.slug.toLocaleLowerCase().includes(filterInput)
       )
       .filter((project) =>

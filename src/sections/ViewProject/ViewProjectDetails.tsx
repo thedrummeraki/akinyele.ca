@@ -1,45 +1,36 @@
-import { Link } from "react-router-dom";
-import { TagsContainer, Tag } from "../../components";
-import ImageGallery from "../../components/ImageGallery";
-import { back } from "../../icons";
+import { Link, useNavigate } from "react-router-dom";
+import { back, github, openInNew } from "../../icons";
 import { Project } from "../Projects/types";
-import { technologyInfo } from "../Projects/useProjects";
 
 import "react-image-gallery/styles/css/image-gallery.css";
+import { useGithubUrl } from "../../utils";
 
 interface Props {
   project: Project;
 }
 
 export default function ViewProjectDetails({ project }: Props) {
-  const images = [
-    {
-      original: "https://picsum.photos/id/1018/1000/600/",
-      thumbnail: "https://picsum.photos/id/1018/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1015/1000/600/",
-      thumbnail: "https://picsum.photos/id/1015/250/150/",
-    },
-    {
-      original: "https://picsum.photos/id/1019/1000/600/",
-      thumbnail: "https://picsum.photos/id/1019/250/150/",
-    },
-  ];
+  const navigate = useNavigate();
 
   return (
     <section className="container project">
-      <div style={{ display: "flex", alignItems: "center" }}>
-        <Link to="/projects">
-          <button className="button" style={{ padding: 5 }}>
+      <div style={{ display: "flex", marginTop: "2rem" }}>
+        <div>
+          <button
+            className="button"
+            style={{ padding: 5 }}
+            onClick={() => navigate(-1)}
+          >
             <img src={back} height={24} width={24} />
           </button>
-        </Link>
-        <div>
-          <h2 style={{ marginLeft: "1rem", marginBottom: 0 }}>
-            {project.name}
-          </h2>
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <h2 style={{ margin: "0 0 0 1rem" }}>{project.name}</h2>
           <div className="synopsis">{project.synopsis}</div>
+          <div style={{ display: "flex", gap: 10, margin: "1rem" }}>
+            <GithubLink project={project} />
+            <ExternalLink project={project} />
+          </div>
         </div>
       </div>
       {/* <TagsContainer>
@@ -50,11 +41,18 @@ export default function ViewProjectDetails({ project }: Props) {
         })}
       </TagsContainer> */}
 
-      <div className="section">{/* <ImageGallery items={images} /> */}</div>
-
-      {/* {project.watchDemo?.embed && (
+      {project.watchDemo?.embed && (
         <div className="section">
-          <div style={{ width: "70%", height: 400, margin: "0 auto" }}>
+          <div
+            style={{
+              width: "100%",
+              height: 500,
+              margin: "0 auto",
+              borderRadius: ".5rem",
+              zIndex: 1,
+              overflow: "hidden",
+            }}
+          >
             <iframe
               width="100%"
               height="100%"
@@ -65,7 +63,71 @@ export default function ViewProjectDetails({ project }: Props) {
             ></iframe>
           </div>
         </div>
-      )} */}
+      )}
+
+      {project.description && (
+        <div className="section description">
+          <div className="sub-section">
+            <h3>Description</h3>
+            <p>{project.description.normal}</p>
+          </div>
+
+          {project.description.challenges && (
+            <div className="sub-section">
+              <h3>Challenges</h3>
+              <p>{project.description.challenges}</p>
+            </div>
+          )}
+
+          {project.description.technical && (
+            <div className="sub-section">
+              <h3>Technical description</h3>
+              <p>{project.description.technical}</p>
+            </div>
+          )}
+        </div>
+      )}
     </section>
+  );
+}
+
+function GithubLink({ project }: { project: Project }) {
+  const githubUrl = useGithubUrl(project);
+
+  if (!githubUrl) {
+    return null;
+  }
+
+  return (
+    <a href={githubUrl} target="_blank" rel="noreferrer" title="View on Github">
+      <img src={github} className="icon" alt={project.name + " github"} />
+    </a>
+  );
+}
+
+function ExternalLink({ project }: { project: Project }) {
+  const title = "Open " + project.name;
+
+  const imageMarkup = <img src={openInNew} className="icon" alt={title} />;
+
+  if (!project.url && project.internalUrl) {
+    return (
+      <Link to={project.internalUrl} title={title}>
+        {imageMarkup}
+      </Link>
+    );
+  } else if (!project.url && !project.internalUrl) {
+    const internalProjectUrl = `/projects/${project.slug}`;
+    return (
+      <Link to={internalProjectUrl} title={title}>
+        {imageMarkup}
+      </Link>
+    );
+  }
+
+  return (
+    <a href={project.url} target="_blank" rel="noreferrer" title={title}>
+      {imageMarkup}
+    </a>
   );
 }

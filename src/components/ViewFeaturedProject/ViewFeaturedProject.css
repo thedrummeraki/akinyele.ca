@@ -1,7 +1,7 @@
 .view-featured-project {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  gap: 2rem;
 }
 
 .view-featured-project .image {
@@ -26,15 +26,8 @@
 .view-featured-project .details {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   gap: 1.5rem;
   justify-content: center;
-  /* display: "flex",
-  flexDirection: "column",
-  padding: "1rem",
-  gap: "1.5rem",
-  zIndex: 1,
-  justifyContent: "center", */
 }
 
 .view-featured-project .details .title-and-year {

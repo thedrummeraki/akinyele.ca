@@ -4,9 +4,10 @@ export interface BasicProject {
   slug: string;
   name: string;
   synopsis: string;
+  beta?: boolean;
   tags: ProjectTag[];
   technologies: ProjectTechnology[];
-  description?: string;
+  description?: ProjectDescription;
   url?: string;
   internalUrl?: string;
   hackathon?: boolean;
@@ -51,6 +52,12 @@ export type ProjectTechnology =
   | "C#"
   | "unity"
   | "java";
+
+export interface ProjectDescription {
+  normal: string;
+  technical?: string;
+  challenges?: string;
+}
 
 export interface CompanyDetails {
   name: string;
