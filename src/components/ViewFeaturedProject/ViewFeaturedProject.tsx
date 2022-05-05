@@ -41,13 +41,13 @@ export default function ViewFeaturedProject({ project }: Props) {
           </TagsContainer>
         </div>
         <div>
-          <Link to={projectUrl}>
-            <button
-              className="button"
-              style={{ padding: "1rem", fontSize: "1rem" }}
-            >
-              <span>Learn more</span>
-            </button>
+          <Link
+            to={projectUrl}
+            className="button"
+            style={{ padding: "1rem", fontSize: "1rem" }}
+            role="button"
+          >
+            <span>Learn more</span>
           </Link>
         </div>
       </div>
