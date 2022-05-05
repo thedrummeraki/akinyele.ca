@@ -19,7 +19,12 @@ export default function TrackCard({ track }: Props) {
           .concat(` and ${track.artists.length - 2} more`);
 
   return (
-    <a className="track" target="_blank" href="#">
+    <a
+      className="track"
+      target="_blank"
+      rel="noreferrer"
+      href={`https://open.spotify.com/track/${track.id}`}
+    >
       <img className="image" src={track.album.img} alt={track.name} />
       <div
         className="info"

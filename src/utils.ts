@@ -9,6 +9,10 @@ export function usePermalink(str: string) {
 }
 
 export function useGithubUrl(project: Project) {
+  return projectGithubUrl(project);
+}
+
+export function projectGithubUrl(project: Project) {
   if (project.github) {
     return typeof project.github === "string"
       ? project.github

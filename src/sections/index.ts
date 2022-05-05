@@ -4,3 +4,4 @@ export { default as ViewProject } from "./ViewProject";
 export { default as Music } from "./Music";
 export { default as About } from "./About";
 export { default as DexifyPrivacyPolicy } from "./DexifyPrivacyPolicy";
+export { default as ViewAllProjects } from "./ViewAllProjects";

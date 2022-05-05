@@ -20,7 +20,7 @@ const shopify: CompanyDetails = {
 
 const rakuten: CompanyDetails = {
   name: "Rakuten Group, Inc.",
-  website: "https://shopify.com",
+  website: "https://www.rakuten.co.jp",
   github: "https://github.com/rakutentech",
 };
 
@@ -39,6 +39,7 @@ export default function useProjects() {
     {
       slug: "hidden-project",
       name: "Theme Picker",
+      status: "active",
       synopsis: "",
       hidden: true,
       featured: true,
@@ -54,6 +55,7 @@ export default function useProjects() {
     {
       slug: "airing-manga",
       name: '"Airing" manga',
+      status: "active",
       synopsis:
         "A very small service implemented for Dexify (mobile) to check which manga have an anime airing.",
       hidden: true,
@@ -68,6 +70,7 @@ export default function useProjects() {
       slug: "dexify-mobile",
       name: "Dexify (mobile)",
       synopsis: "Unofficial Mangadex.org mobile client.",
+      status: "paused",
       beta: true,
       featured: true,
       desktopImage: dexifyMobileDesktopIntro,
@@ -99,10 +102,15 @@ export default function useProjects() {
           "I stepped out of my comfort zone and learn about animations which is something I had" +
           "always gone to great lengths to avoid. Image performance also was taken into account ." +
           "Unfortunately, I didn't manage to optimize the manga reader for iOS devices. ",
+        services: [
+          { name: "MangaDex", url: "https://mangadex.org" },
+          { name: "YourAnime.moe", url: "https://youranime.moe" },
+        ],
       },
     },
     {
       slug: "weather-recommendations-shop-mini",
+      status: "done",
       name: "Recommendations based on weather for SHOP",
       synopsis:
         "A Shop Mini app that allows you to view Shopify product recommendations based on the upcoming weather.",
@@ -118,6 +126,7 @@ export default function useProjects() {
     {
       slug: "music-explorer",
       name: "My Spotify corner",
+      status: "active",
       synopsis:
         "Check out my favourite Spotify songs, artists, albums as well as what I'm listening to!",
       madeIn: {
@@ -130,6 +139,7 @@ export default function useProjects() {
     {
       slug: "shopify-partners-store-access",
       name: "Sensitive permissions for Shopify Partners",
+      status: "done",
       synopsis:
         "Manage your staff's permissions on the Shopify Partners dashboard.",
       madeIn: {
@@ -145,6 +155,7 @@ export default function useProjects() {
     {
       slug: "youranime",
       name: "YourAnime.moe",
+      status: "active",
       synopsis: "The next go-to anime streaming information website.",
       featured: true,
       mobileImage: youranimeMobile,
@@ -183,11 +194,23 @@ export default function useProjects() {
           "A proxy server is present to allow the client to access the API as well as handle caching and " +
           "authentication. I learnt that it's not standard to handle authentication at this level, so one " +
           "the future is to decouple the authentication from the proxy server.",
+        services: [
+          { name: "Kitsu - More of what you love", url: "https://kitsu.io" },
+          {
+            name: "AniList: Track, Discover, Share Anime & Manga",
+            url: "https://anilist.co",
+          },
+          {
+            name: "YourAnime Accounts",
+            url: "https://id.youranime.moe",
+          },
+        ],
       },
     },
     {
       slug: "github-discord-bot",
       name: "Github on Discord",
+      status: "done",
       synopsis: "A personal Github assistant on Discord.",
       tags: ["bot"],
       technologies: ["ruby"],
@@ -203,6 +226,7 @@ export default function useProjects() {
     {
       slug: "neets-tracker-bot",
       name: "NEETs Tracker",
+      status: "done",
       synopsis:
         "A personal bot that tracks new songs posted by ActiveNEETs and Yorushika.",
       tags: ["bot"],
@@ -215,6 +239,7 @@ export default function useProjects() {
     {
       slug: "yorushika-game",
       name: '"Can you guess it?"',
+      status: "done",
       synopsis:
         "A small web-based game I made during the start of COVID-19. Can you guess the song?",
       tags: ["game"],
@@ -228,6 +253,7 @@ export default function useProjects() {
     {
       slug: "dexify",
       name: "Dexify",
+      status: "stopped",
       synopsis:
         "An unofficial alternative Manga reader. Powered by Mangadex.org.",
       url: "https://dexify.herokuapp.com",
@@ -241,6 +267,7 @@ export default function useProjects() {
     {
       slug: "mangadex",
       name: "Mangadex (Ruby Gem)",
+      status: "active",
       synopsis:
         "Your (unofficial) favourite Ruby gem for interacting with Mangadex.org.",
       madeIn: {
@@ -253,8 +280,9 @@ export default function useProjects() {
       github: true,
     },
     {
-      slug: "youranime-id",
-      name: "YourAnime ID",
+      slug: "youranime-accounts",
+      name: "YourAnime Accounts",
+      status: "active",
       featured: true,
       desktopImage: youranimeAccountsDesktop,
       synopsis:
@@ -270,10 +298,31 @@ export default function useProjects() {
         link: "https://www.youtube.com/embed/5mvfGUjjYUE",
         embed: true,
       },
+      description: {
+        normal:
+          "An authentication system for my apps. One account for all of my services. " +
+          "I use this service when I need seamless authentication across the private services " +
+          "I develop on the side.",
+        technical:
+          "This service was built entirely in Ruby on Rails. I wanted to focus on simplicity " +
+          "and ease of use so I used Google Accounts and Shopify Accounts as sources of inspiration. " +
+          "This was originally for a Nintendo Switch clip sharing platform (called Misete.io) as a CAS " +
+          "(Central Authentication Service) server. Implementing and maintaing the CAS proved to be " +
+          "quite the chore, so I decided to rebuild it as an OAuth server using Doorkeeper, which follows " +
+          "the OAuth 2.0 RFC specification. Please note: It is not possible for the public to register " +
+          "any OAuth clients at this time.",
+        services: [
+          {
+            name: "Doorkeeper - OAuth 2 provider for Rails and Grape",
+            url: "https://doorkeeper.gitbook.io",
+          },
+        ],
+      },
     },
     {
       slug: "misete",
       name: "Misete.io",
+      status: "stopped",
       synopsis:
         "A space for watching and sharing Nintendo Switch clips across regions.",
       madeIn: {
@@ -290,6 +339,7 @@ export default function useProjects() {
     {
       slug: "osusume",
       name: "O SUSUME (Watch parties)",
+      status: "stopped",
       synopsis:
         "A tools serving as Shopify's internal recommendations anime system.",
       madeIn: {
@@ -304,6 +354,7 @@ export default function useProjects() {
     {
       slug: "capstone",
       name: "Rent Management Dashboard",
+      status: "done",
       synopsis:
         "Manage your rent payments with this simple yet powerful dashboard.",
       madeIn: {
@@ -316,6 +367,7 @@ export default function useProjects() {
     {
       slug: "aki-operations",
       name: "Operations (gem)",
+      status: "stopped",
       synopsis:
         "Manage your Rails application's operation permissions with ease.",
       madeIn: {
@@ -325,11 +377,13 @@ export default function useProjects() {
       tags: ["library"],
       technologies: ["ruby", "rails"],
       internal: true,
+      company: rakuten,
       url: "https://rubygems.org/gems/aki-operations",
     },
     {
       slug: "rakuten-database-tool",
       name: "Internal Database Management",
+      status: "done",
       synopsis:
         "Upgraded and improved Rakuten's internal Database management system",
       madeIn: {
@@ -346,6 +400,7 @@ export default function useProjects() {
     {
       slug: "devpost-hackathon",
       name: "Voice Race",
+      status: "done",
       synopsis:
         'A 3D racing game that allows the player to control a racing car by simply saying the words "go", "left", "right", "back", or "faster".',
       url: "https://devpost.com/software/voice-race",
@@ -361,6 +416,7 @@ export default function useProjects() {
     {
       slug: "5g-networks-3d",
       name: "5G in 3D",
+      status: "done",
       synopsis:
         "3D visualization tools were built in order to estimate how far potential (at the time) 5G networks would spread across a city.",
       company: crc,
@@ -376,6 +432,7 @@ export default function useProjects() {
     {
       slug: "notaki",
       name: "Notaki.ca (formerly forevernote.ca)",
+      status: "paused",
       synopsis: "A note-taking app for students",
       madeIn: {
         year: 2017,
@@ -387,6 +444,7 @@ export default function useProjects() {
     {
       slug: "youranime-admin",
       name: "YourAnime.moe Admin panel",
+      status: "active",
       synopsis: "YourAnime.moe: supercharged.",
       madeIn: {
         year: 2020,
@@ -398,6 +456,7 @@ export default function useProjects() {
     {
       slug: "decode-hackathon-2017",
       name: "Giveaway Shopify app",
+      status: "done",
       github: "https://github.com/thedrummeraki/decode2017",
       synopsis:
         "A Shopify app for enabling merchants to organize giveaways, as part of deCODE Hackathon at uOttawa.",
@@ -416,7 +475,8 @@ export default function useProjects() {
     },
     {
       slug: "tanoshimu",
-      name: "Have-Fun ~ Tanoshimu",
+      name: "Have-Fun ~ Tanoshimu (form. My Akinyele)",
+      status: "done",
       synopsis: "A private site hosting various anime shows.",
       madeIn: {
         year: 2016,
@@ -428,10 +488,13 @@ export default function useProjects() {
         link: "https://www.youtube.com/embed/pCId99AK1HU",
         embed: true,
       },
+      github: "https://github.com/YourAnime-moe/youranime.moe",
+      url: "https://youranime.moe",
     },
     {
       slug: "tanoshimu-video",
       name: "Tanoshimu Assets server",
+      status: "done",
       synopsis:
         "A little assets server hosting static content, such as images and videos, to for my Tanoshimu application.",
       madeIn: {
@@ -466,6 +529,12 @@ export function technologyInfo(technology: ProjectTechnology) {
         color: "#61dafb",
         backgroundColor: "#333",
       };
+    }
+    case "C#": {
+      return { name: "C#", backgroundColor: "#642076", color: "#fff" };
+    }
+    case "unity": {
+      return { name: "Unity", backgroundColor: "#000", color: "#fff" };
     }
     default: {
       return {

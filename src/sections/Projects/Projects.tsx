@@ -3,10 +3,11 @@ import ProjectCard from "./ProjectCard";
 import useProjects, { technologyInfo } from "./useProjects";
 
 import "./Projects.css";
-import { Grid, Header, ViewFeaturedProject } from "../../components";
+import { Header, ViewFeaturedProject } from "../../components";
 import { filter } from "../../icons";
 import { ProjectTechnology } from "./types";
 import { useDocumentTitle } from "../../components/DocumentTitle";
+import { Link } from "react-router-dom";
 
 const tags = [
   {
@@ -41,10 +42,6 @@ export default function Projects() {
   const featuredProjects = projects.filter(
     (project) => project.featured && !project.hidden
   );
-
-  const mostRecentProjects = projects
-    .filter((project) => !project.featured && !project.hidden)
-    .slice(0, 5);
 
   const [selected, setSelectedTags] = useState<string[]>([]);
   const [typedTag, setTypedTag] = useState<string>();
@@ -112,7 +109,7 @@ export default function Projects() {
     <>
       <Header />
       <section className="projects container">
-        <h2 className="title">My projects</h2>
+        <h2 className="title">Featured projects</h2>
         <div style={{ display: "none", alignItems: "center" }}>
           <input
             type="text"
@@ -215,18 +212,13 @@ export default function Projects() {
         <div
           className="projects container"
           style={{
+            marginTop: "5rem",
             marginBottom: "10rem",
           }}
         >
-          <h2 className="title">Most recent projects</h2>
-
-          <Grid>
-            {mostRecentProjects.map((project) => (
-              <Grid.Item key={project.slug}>
-                <ProjectCard project={project} onTechnologySelect={() => {}} />
-              </Grid.Item>
-            ))}
-          </Grid>
+          <Link to="/projects/archive" className="button see-projects">
+            <span>All of my projects</span>
+          </Link>
         </div>
       </section>
     </>

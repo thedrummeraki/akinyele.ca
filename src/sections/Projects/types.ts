@@ -1,6 +1,7 @@
 export interface BasicProject {
   hidden?: boolean;
   featured?: boolean;
+  status: "active" | "stopped" | "done" | "paused";
   slug: string;
   name: string;
   synopsis: string;
@@ -53,10 +54,23 @@ export type ProjectTechnology =
   | "unity"
   | "java";
 
+export interface ProjectTimeline {
+  year: number;
+  moment?: string; // could be a month, a season
+  description: string;
+}
+
 export interface ProjectDescription {
   normal: string;
   technical?: string;
   challenges?: string;
+  timeline?: ProjectTimeline[];
+  services?: {
+    name: string;
+    url?: string;
+    color?: string;
+    internal?: boolean;
+  }[];
 }
 
 export interface CompanyDetails {

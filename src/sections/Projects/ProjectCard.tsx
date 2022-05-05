@@ -1,10 +1,6 @@
 import { Project, ProjectTechnology } from "./types";
-import { github, openInNew, play } from "../../icons";
-import { seasonInfo, technologyInfo } from "./useProjects";
-import YoutubeEmbedModal from "../../components/YoutubeEmbed";
+import { seasonInfo } from "./useProjects";
 import { Link } from "react-router-dom";
-import ProjectCardBadge from "./ProjectCardBadge";
-import { Tag, TagsContainer } from "../../components";
 import { useGithubUrl } from "../../utils";
 
 interface Props {
@@ -13,19 +9,7 @@ interface Props {
   onTechnologySelect(technology: ProjectTechnology): void;
 }
 
-function classNames(names: (string | boolean | null | undefined)[]) {
-  return names
-    .filter((name) => {
-      return Boolean(name);
-    })
-    .join(" ");
-}
-
-export default function ProjectCard({
-  project,
-  showDescription,
-  onTechnologySelect,
-}: Props) {
+export default function ProjectCard({ project, showDescription }: Props) {
   if (project.hidden) {
     return null;
   }
@@ -44,10 +28,11 @@ export default function ProjectCard({
         </div>
       )}
       <div className="footer">
-        <div className="icons">
+        <ProjectYear project={project} />
+        {/* <div className="icons">
           <WatchDemo project={project} />
           <GithubLink project={project} />
-        </div>
+        </div> */}
         {/* <TagsContainer>
           {project.internal && (
             <ProjectCardBadge
@@ -81,20 +66,6 @@ export default function ProjectCard({
   );
 }
 
-function GithubLink({ project }: { project: Project }) {
-  const githubUrl = useGithubUrl(project);
-
-  if (!githubUrl) {
-    return null;
-  }
-
-  return (
-    <a href={githubUrl} target="_blank" rel="noreferrer" title="View on Github">
-      <img src={github} className="icon" alt={project.name + " github"} />
-    </a>
-  );
-}
-
 function ProjectYear({
   showSeason,
   project,
@@ -115,8 +86,6 @@ function ViewProject({ project }: { project: Project }) {
   const githubUrl = useGithubUrl(project);
   const projectUrl = project.url || project.internalUrl || githubUrl;
 
-  const title = "Open " + project.name;
-
   const linkToProjectMarkup = (
     <Link to={getProjectLinkTo(project)}>
       <span className="title">{project.name}</span>
@@ -127,44 +96,7 @@ function ViewProject({ project }: { project: Project }) {
     return linkToProjectMarkup;
   }
 
-  // if (project.internalUrl) {
-  //   return (
-  //     <Link to={project.internalUrl} className="link">
-  //       {linkContentsMarkup}
-  //     </Link>
-  //   );
-  // }
-
-  return (
-    <div className="clickable-title">
-      {linkToProjectMarkup}
-      {/* {!project.internalUrl && (
-        <a href={projectUrl} target="_blank" rel="noreferrer" title="title">
-          <img src={openInNew} className="icon" alt={title} />
-        </a>
-      )} */}
-    </div>
-  );
-}
-
-function WatchDemo({ project }: { project: Project }) {
-  const { watchDemo } = project;
-
-  if (!watchDemo) {
-    return null;
-  }
-
-  const title = "Watch demo for " + project.name;
-
-  if (watchDemo.embed) {
-    return <YoutubeEmbedModal embedUrl={watchDemo.link} title={title} />;
-  }
-
-  return (
-    <a href={watchDemo.link} target="_blank" rel="noreferrer" title={title}>
-      <img src={play} className="icon" alt={title} />
-    </a>
-  );
+  return <div className="clickable-title">{linkToProjectMarkup}</div>;
 }
 
 function getProjectLinkTo(project: Project) {

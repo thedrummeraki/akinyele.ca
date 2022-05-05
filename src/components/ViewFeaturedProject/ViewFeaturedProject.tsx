@@ -44,7 +44,7 @@ export default function ViewFeaturedProject({ project }: Props) {
           <Link
             to={projectUrl}
             className="button"
-            style={{ padding: "1rem", fontSize: "1rem" }}
+            style={{ padding: "1rem" }}
             role="button"
           >
             <span>Learn more</span>

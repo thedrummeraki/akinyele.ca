@@ -11,7 +11,12 @@ export default function ArtistCard({ artist }: Props) {
   const isPlaying = useResourcePlaying(artist);
 
   return (
-    <a className="artist" target="_blank" href="#">
+    <a
+      className="artist"
+      target="_blank"
+      rel="noreferrer"
+      href={`https://open.spotify.com/artist/${artist.id}`}
+    >
       <img
         className="image"
         src={artist.img}

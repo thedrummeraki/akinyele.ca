@@ -1,29 +1,23 @@
-import { Link, useNavigate } from "react-router-dom";
-import { back, github, openInNew } from "../../icons";
+import { Link } from "react-router-dom";
+import { github, openInNew } from "../../icons";
 import { Project } from "../Projects/types";
 
 import "react-image-gallery/styles/css/image-gallery.css";
 import { useGithubUrl } from "../../utils";
+import { Tag, TagsContainer } from "../../components";
+import BackButton from "../../components/BackButton";
 
 interface Props {
   project: Project;
 }
 
 export default function ViewProjectDetails({ project }: Props) {
-  const navigate = useNavigate();
-
   return (
     <section className="container project">
-      <div style={{ display: "flex", marginTop: "2rem" }}>
-        <div>
-          <button
-            className="button"
-            style={{ padding: 5 }}
-            onClick={() => navigate(-1)}
-          >
-            <img src={back} height={24} width={24} />
-          </button>
-        </div>
+      <div style={{ marginTop: "1rem" }}>
+        <BackButton to="/projects" />
+      </div>
+      <div style={{ display: "flex", marginTop: "1rem" }}>
         <div style={{ display: "flex", flexDirection: "column" }}>
           <h2 style={{ margin: "0 0 0 1rem" }}>{project.name}</h2>
           <div className="synopsis">{project.synopsis}</div>
@@ -83,6 +77,44 @@ export default function ViewProjectDetails({ project }: Props) {
             <div className="sub-section">
               <h3>Technical description</h3>
               <p>{project.description.technical}</p>
+            </div>
+          )}
+
+          {(project.description.services || []).length > 0 && (
+            <div className="sub-section">
+              <h3>Services and APIs</h3>
+              <TagsContainer>
+                {project.description.services!.map((service) => {
+                  const tagMarkup = (
+                    <Tag name={service.name} style={{ color: service.color }} />
+                  );
+
+                  if (service.url) {
+                    if (service.internal) {
+                      return (
+                        <Link
+                          to={service.url}
+                          style={{ textDecoration: "none" }}
+                        >
+                          {tagMarkup}
+                        </Link>
+                      );
+                    }
+                    return (
+                      <a
+                        href={service.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        style={{ textDecoration: "none" }}
+                      >
+                        {tagMarkup}
+                      </a>
+                    );
+                  }
+
+                  return tagMarkup;
+                })}
+              </TagsContainer>
             </div>
           )}
         </div>
