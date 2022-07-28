@@ -17,7 +17,7 @@ export default function ViewFeaturedProject({ project }: Props) {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setImagesVisible(true);
-    }, 50);
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, []);
