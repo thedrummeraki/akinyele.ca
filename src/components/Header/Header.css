@@ -13,6 +13,7 @@
 .header .logo {
   display: flex;
   align-items: center;
+  flex: 0 1 auto;
 }
 
 .header .logo .image img {
@@ -33,8 +34,31 @@
   margin-bottom: 3px;
 }
 
+.header .menu {
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: 1rem;
+  margin-left: 2rem;
+  margin-right: 1rem;
+}
+
+.header .menu a.selected {
+  text-decoration: underline;
+}
+
+.header .menu a.item {
+  padding-bottom: 4px;
+}
+
 @media only screen and (max-width: 600px) {
   /* .header .logo .name {
     display: none;
   } */
+
+  .header .menu {
+    display: none !important;
+  }
 }

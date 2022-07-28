@@ -7,3 +7,4 @@ export { Tag } from "./TagsContainer";
 export { default as ViewFeaturedProject } from "./ViewFeaturedProject";
 export { default as Grid } from "./Grid";
 export { default as IconLink } from "./IconLink";
+export { default as SocialLink } from "./SocialLink";

@@ -71,8 +71,8 @@ export default function useProjects() {
       name: "Shopify Accounts on Shopify Theme Store",
       status: "done",
       synopsis:
-        "A backend-focus projects where the goal was to modernize authentication on Shopify Theme " +
-        "Store and integrate Shopify Accounts in favour of shop-based authentication.",
+        "Modernize authentication on Shopify Theme Store and integrate " +
+        "Shopify Accounts in favour of shop-based authentication.",
       hidden: false,
       description: {
         normal:

@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useCurrentTrack } from "../../../../App/providers/MusicProvider";
+import { SocialLink } from "../../../../components";
 import {
   email,
   github,
@@ -118,28 +119,4 @@ function useGreeting() {
   }
 
   return "Good evening.";
-}
-
-function SocialLink({
-  internal,
-  alt,
-  url,
-  icon,
-}: {
-  internal?: boolean;
-  alt: string;
-  url: string;
-  icon: string;
-}) {
-  const iconMarkup = <img src={icon} className="icon" alt={alt} />;
-
-  if (internal) {
-    return <Link to={url}>{iconMarkup}</Link>;
-  }
-
-  return (
-    <a href={url} target="_blank" rel="noreferrer">
-      {iconMarkup}
-    </a>
-  );
 }

@@ -142,7 +142,7 @@ export function useTracks({ top, timeRange }: TracksProps) {
   return { loading, tracks, error };
 }
 
-export function useCurrentTrack() {
+export function useCurrentTrack(interval = 1000) {
   const { track, setTrack, loading, setLoading } = useContext(MusicContext);
 
   const checkCurrentTrack = () => {
@@ -161,7 +161,7 @@ export function useCurrentTrack() {
 
   // eslint-disable-next-line
   useEffect(checkCurrentTrack, []);
-  useInterval(checkCurrentTrack, 1000);
+  useInterval(checkCurrentTrack, interval);
 
   // useEffect(() => {
   //   setLoading(loading);

@@ -12,20 +12,7 @@ export default function About() {
   return (
     <div className="About">
       <Header />
-      <section className="container" style={{ height: "100vh" }}>
-        <div className="section-title">
-          <h2>What I'm up to</h2>
-          <Link to="/projects">See more...</Link>
-        </div>
-        <div className="projects">
-          <div className="grid">
-            {projects.map((project) => (
-              <ProjectCard project={project} onTechnologySelect={() => {}} />
-            ))}
-          </div>
-        </div>
-      </section>
-      <section className="container" style={{ height: "100vh" }}>
+      <section className="container">
         <h2>About me</h2>
         <img
           src={myFace}
