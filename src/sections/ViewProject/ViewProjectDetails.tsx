@@ -148,12 +148,7 @@ function ExternalLink({ project }: { project: Project }) {
       </Link>
     );
   } else if (!project.url && !project.internalUrl) {
-    const internalProjectUrl = `/projects/${project.slug}`;
-    return (
-      <Link to={internalProjectUrl} title={title}>
-        {imageMarkup}
-      </Link>
-    );
+    return null;
   }
 
   return (
