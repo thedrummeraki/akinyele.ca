@@ -37,6 +37,59 @@ const crc: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
+      slug: "manga-discovery",
+      name: "Discover Manga",
+      status: "paused",
+      synopsis:
+        '"Seeing is believing". Visitors read the first chapter of a manga ' +
+        "picked at random and can quickly decide if they like or not.",
+      madeIn: {
+        year: 2022,
+        season: "summer",
+      },
+      tags: ["oauth", "web"],
+      technologies: ["js"],
+    },
+    {
+      slug: "japanese-morphological-analyzer",
+      name: '"What\'s this Japanese word?"',
+      status: "active",
+      synopsis:
+        "Using a trusted morphological analyzer to assist learners of Japanese with understanding " +
+        "the role and category of each word. REST APIs in Ruby " +
+        "and Java. Clients in React and React Native.",
+      madeIn: {
+        year: 2022,
+        season: "summer",
+      },
+      tags: ["api", "mobile", "web"],
+      technologies: ["java", "js", "ruby", "react-native"],
+      beta: true,
+    },
+    {
+      slug: "identity-on-theme-store",
+      name: "Shopify Accounts on Shopify Theme Store",
+      status: "done",
+      synopsis:
+        "A backend-focus projects where the goal was to modernize authentication on Shopify Theme " +
+        "Store and integrate Shopify Accounts in favour of shop-based authentication.",
+      hidden: false,
+      description: {
+        normal:
+          "Integrating with Shopify Accounts on allows " +
+          "for better overall user-experience as well staying to up to date with how internal services " +
+          "are implemented at Shopify.",
+      },
+      madeIn: {
+        year: 2022,
+        season: "spring",
+      },
+      tags: ["oauth", "web", "api"],
+      technologies: ["rails", "js"],
+      url: "https://themes.shopify.com",
+      company: shopify,
+    },
+    {
       slug: "hidden-project",
       name: "Theme Picker",
       status: "active",
@@ -49,16 +102,15 @@ export default function useProjects() {
       },
       tags: ["web"],
       technologies: ["react", "rails"],
-      url: "https://comingsoon.com",
+      company: shopify,
       gallery: [],
     },
     {
       slug: "airing-manga",
-      name: '"Airing" manga',
-      status: "active",
+      name: "Manga with airing anime shows service",
+      status: "done",
       synopsis:
         "A very small service implemented for Dexify (mobile) to check which manga have an anime airing.",
-      hidden: true,
       madeIn: {
         year: 2022,
         season: "winter",
@@ -132,7 +184,7 @@ export default function useProjects() {
       madeIn: {
         year: 2021,
       },
-      tags: ["api", "web"],
+      tags: ["api", "oauth", "web"],
       technologies: ["node", "react", "js"],
       internalUrl: "/music",
     },
@@ -163,7 +215,7 @@ export default function useProjects() {
       madeIn: {
         year: 2016,
       },
-      tags: ["web", "api"],
+      tags: ["web", "oauth", "api"],
       technologies: ["rails", "react", "node"],
       github: "https://github.com/YourAnime-moe/youranime.moe",
       url: "https://youranime.moe",
@@ -291,7 +343,7 @@ export default function useProjects() {
         year: 2020,
         season: "fall",
       },
-      tags: ["web"],
+      tags: ["oauth", "web"],
       technologies: ["rails"],
       url: "https://id.youranime.moe",
       watchDemo: {
@@ -329,7 +381,7 @@ export default function useProjects() {
         year: 2020,
         season: "spring",
       },
-      tags: ["web", "api"],
+      tags: ["oauth", "web", "api"],
       technologies: ["rails"],
       watchDemo: {
         link: "https://www.youtube.com/embed/13vbgK3JLjQ",
@@ -535,6 +587,9 @@ export function technologyInfo(technology: ProjectTechnology) {
     }
     case "unity": {
       return { name: "Unity", backgroundColor: "#000", color: "#fff" };
+    }
+    case "java": {
+      return { name: "Java", backgroundColor: "#b07219", color: "#fff" };
     }
     default: {
       return {

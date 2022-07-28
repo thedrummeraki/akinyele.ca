@@ -61,7 +61,12 @@
 
 .view-featured-project .image img {
   object-fit: cover;
-  transition: transform 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  opacity: 0;
+}
+
+.view-featured-project .image img.visible {
+  opacity: 1;
 }
 
 .view-featured-project .image:hover img {

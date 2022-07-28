@@ -32,7 +32,14 @@ export interface FeaturedProject extends BasicProject {
 
 export type Project = BasicProject & FeaturedProject;
 
-export type ProjectTag = "web" | "mobile" | "bot" | "api" | "library" | "game";
+export type ProjectTag =
+  | "web"
+  | "mobile"
+  | "bot"
+  | "api"
+  | "library"
+  | "game"
+  | "oauth";
 export type Season = "fall" | "winter" | "spring" | "summer";
 
 export interface TagState {

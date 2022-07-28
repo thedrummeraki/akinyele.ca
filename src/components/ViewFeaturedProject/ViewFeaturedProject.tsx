@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FeaturedProject } from "../../sections/Projects/types";
 import { technologyInfo } from "../../sections/Projects/useProjects";
@@ -11,6 +12,15 @@ interface Props {
 
 export default function ViewFeaturedProject({ project }: Props) {
   const projectUrl = `/projects/${project.slug}`;
+  const [imagesVisible, setImagesVisible] = useState(false);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setImagesVisible(true);
+    }, 50);
+
+    return () => clearTimeout(timeout);
+  }, []);
 
   return (
     <div className="view-featured-project">
@@ -19,6 +29,7 @@ export default function ViewFeaturedProject({ project }: Props) {
         <img
           src={project.desktopImage}
           alt={project.name}
+          className={imagesVisible ? "visible" : undefined}
           style={{ height: "100%", width: "100%" }}
         />
       </Link>
