@@ -37,9 +37,24 @@ const crc: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
+      slug: "password-sharing",
+      name: "My password sharing",
+      status: "active",
+      synopsis:
+        "A personal hackathon-style side-project allowing me to share " +
+        "passwords to close ones without worrying about compromising my " +
+        "login credentials.",
+      madeIn: {
+        year: 2022,
+        season: "summer",
+      },
+      tags: ["web"],
+      technologies: ["rails"],
+    },
+    {
       slug: "manga-discovery",
       name: "Discover Manga",
-      status: "paused",
+      status: "active",
       synopsis:
         '"Seeing is believing". Visitors read the first chapter of a manga ' +
         "picked at random and can quickly decide if they like or not.",
