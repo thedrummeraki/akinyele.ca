@@ -233,7 +233,7 @@ export default function useProjects() {
       tags: ["web", "oauth", "api"],
       technologies: ["rails", "react", "node"],
       github: "https://github.com/YourAnime-moe/youranime.moe",
-      // url: "https://youranime.moe", // needs fixing for now
+      url: "https://youranime.moe",
       watchDemo: {
         link: "https://www.youtube.com/embed/1ShelOHqjUE",
         embed: true,
