@@ -37,6 +37,28 @@ const crc: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
+      slug: "youranime-admin",
+      name: "YourAnime.moe Admin Dashboard",
+      status: "active",
+      synopsis:
+        "A simple dashboard there to help me manage content and jobs for the " +
+        "YourAnime.moe API.",
+      madeIn: {
+        year: 2022,
+        season: "summer",
+      },
+      url: "https://admin.youranime.moe",
+      tags: ["web"],
+      technologies: ["react"],
+      description: {
+        normal: "",
+        services: [
+          { name: "YourAnime.moe", url: "https://youranime.moe" },
+          { name: "YourAnime Accounts", url: "https://id.youranime.moe" },
+        ],
+      },
+    },
+    {
       slug: "password-sharing",
       name: "My password sharing",
       status: "active",
