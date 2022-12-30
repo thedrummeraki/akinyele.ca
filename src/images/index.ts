@@ -4,3 +4,5 @@ export { default as youranimeMobile } from "./youranime-mobile.png";
 export { default as youranimeAccountsDesktop } from "./youranime-accounts-desktop.png";
 
 export { default as dexifyMobileDesktopIntro } from "./dexify-mobile-desktop-intro.png";
+
+export {default as listeningHistoryDesktop} from './listening-history.png';

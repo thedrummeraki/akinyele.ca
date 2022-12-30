@@ -3,6 +3,7 @@ import {
   youranimeDesktop,
   youranimeMobile,
   dexifyMobileDesktopIntro,
+  listeningHistoryDesktop,
 } from "../../images";
 import {
   CompanyDetails,
@@ -37,9 +38,46 @@ const crc: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
+      slug: "listening-history",
+      name: "Spotify Listener",
+      featured: true,
+      desktopImage: listeningHistoryDesktop,
+      status: "active",
+      synopsis: "Listens to my Spotity music 24/7 and gives me more precise insights on my music trends.",
+      madeIn: {
+        year: 2022,
+        season: "winter",
+      },
+      tags: ["bot", "library"],
+      technologies: ["python", "mongo", "ruby", "node"],
+      description: {
+        normal:
+          "This is a simple polling service that keeps track of all songs I listen to on Spotify, at all " +
+          "times. The goal is to get more precise insights on my music habits. The idea came after seeing my " +
+          "Spotify 2022 Wrapped. I was happy but wanted to see more information. At the moment, this program " +
+          "is gathering data which I will be able to analyze after a couple of weeks/months of listening.",
+        challenges:
+          "Hosting locally on my aging Raspberry PI's hardware was the challenge. I had to make sure to " +
+          "use a light but recent operating system as well as adjust my program's depedencies to be compatible " +
+          "on multiple computers for development purposes.",
+        technical:
+          "A script written in Python polls a Spotify API wrapper written in Node.js (handles " +
+          "authorization) and notifies a Discord channel when a new song is played using a Discord bot " +
+          "written in Ruby.",
+        services: [
+          {name: "Spotify Web API", url: "https://developer.spotify.com/documentation/web-api"},
+          {name: "Discord API", url: "https://discord.com/developers/docs"}
+        ]
+      },
+      watchDemo: {
+        embed: true,
+        link: "https://www.youtube.com/embed/xKzoVuxQSA0",
+      }
+    },
+    {
       slug: "youranime-admin",
       name: "YourAnime.moe Admin Dashboard",
-      status: "active",
+      status: "done",
       synopsis:
         "A simple dashboard there to help me manage content and jobs for the " +
         "YourAnime.moe API.",
@@ -61,7 +99,7 @@ export default function useProjects() {
     {
       slug: "password-sharing",
       name: "My password sharing",
-      status: "active",
+      status: "done",
       synopsis:
         "A personal hackathon-style side-project allowing me to share " +
         "passwords to close ones without worrying about compromising my " +
@@ -76,7 +114,7 @@ export default function useProjects() {
     {
       slug: "manga-discovery",
       name: "Discover Manga",
-      status: "active",
+      status: "done",
       synopsis:
         '"Seeing is believing". Visitors read the first chapter of a manga ' +
         "picked at random and can quickly decide if they like or not.",
@@ -90,7 +128,7 @@ export default function useProjects() {
     {
       slug: "japanese-morphological-analyzer",
       name: '"What\'s this Japanese word?"',
-      status: "active",
+      status: "paused",
       synopsis:
         "Using a trusted morphological analyzer to assist learners of Japanese with understanding " +
         "the role and category of each word. REST APIs in Ruby " +
@@ -215,7 +253,7 @@ export default function useProjects() {
     {
       slug: "music-explorer",
       name: "My Spotify corner",
-      status: "active",
+      status: "done",
       synopsis:
         "Check out my favourite Spotify songs, artists, albums as well as what I'm listening to!",
       madeIn: {
@@ -372,7 +410,6 @@ export default function useProjects() {
       slug: "youranime-accounts",
       name: "YourAnime Accounts",
       status: "active",
-      featured: true,
       desktopImage: youranimeAccountsDesktop,
       synopsis:
         "A custom-made OAuth (authentication) server for all of my apps.",
@@ -627,6 +664,12 @@ export function technologyInfo(technology: ProjectTechnology) {
     }
     case "java": {
       return { name: "Java", backgroundColor: "#b07219", color: "#fff" };
+    }
+    case "python": {
+      return { name: "python", backgroundColor: "#234c6f", color: "#fff" }
+    }
+    case "mongo": {
+      return { name: "mongoDB", backgroundColor: "#00ed64", color: "#000" }
     }
     default: {
       return {

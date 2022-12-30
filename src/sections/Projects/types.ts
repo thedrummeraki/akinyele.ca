@@ -59,7 +59,8 @@ export type ProjectTechnology =
   | "python"
   | "C#"
   | "unity"
-  | "java";
+  | "java"
+  | "mongo";
 
 export interface ProjectTimeline {
   year: number;
