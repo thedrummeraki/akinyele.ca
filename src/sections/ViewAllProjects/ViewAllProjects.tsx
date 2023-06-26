@@ -3,8 +3,11 @@ import BackButton from "../../components/BackButton";
 import YoutubeEmbedModal from "../../components/YoutubeEmbed";
 import { done, github, openInNew, pause, play, close, view } from "../../icons";
 import { projectGithubUrl } from "../../utils";
-import { Project } from "../Projects/types";
-import useProjects, { technologyInfo } from "../Projects/useProjects";
+import { Project, ProjectDeployment } from "../Projects/types";
+import useProjects, {
+  projectDeployedWith,
+  technologyInfo,
+} from "../Projects/useProjects";
 import "./ViewAllProjects.css";
 
 export default function ViewAllProjects() {
@@ -50,10 +53,14 @@ export default function ViewAllProjects() {
             <div className="link">
               <h3>Link</h3>
             </div>
+            <div className="deployed-with">
+              <h3>Deployed with</h3>
+            </div>
           </div>
 
           {allOtherProjects.map((project) => {
             const githubUrl = projectGithubUrl(project);
+            const deploymentInfo = projectDeployedWith(project);
 
             return (
               <div className="row project" key={project.slug}>
@@ -113,6 +120,16 @@ export default function ViewAllProjects() {
                   )}
                   <WatchDemo project={project} />
                 </div>
+                <div className="deployed-with">
+                  {deploymentInfo
+                    ? deploymentInfo.map<React.ReactNode>((deployInfo) => (
+                        <DeployPlatformLink
+                          key={deployInfo.name}
+                          deployInfo={deployInfo}
+                        />
+                      ))
+                    : "-"}
+                </div>
               </div>
             );
           })}
@@ -165,6 +182,23 @@ function WatchDemo({ project }: { project: Project }) {
   return (
     <a href={watchDemo.link} target="_blank" rel="noreferrer" title={title}>
       <img src={play} className="icon" alt={title} />
+    </a>
+  );
+}
+
+function DeployPlatformLink({ deployInfo }: { deployInfo: ProjectDeployment }) {
+  const { name, url } = deployInfo;
+  if (!url) {
+    return <span>{name}</span>;
+  }
+  return (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="deploy-info"
+    >
+      {name}
     </a>
   );
 }

@@ -22,6 +22,7 @@ export interface BasicProject {
     embed?: boolean;
     link: string;
   };
+  deployedWith?: ProjectDeploymentValue[];
 }
 
 export interface FeaturedProject extends BasicProject {
@@ -39,7 +40,8 @@ export type ProjectTag =
   | "api"
   | "library"
   | "game"
-  | "oauth";
+  | "oauth"
+  | "cli";
 export type Season = "fall" | "winter" | "spring" | "summer";
 
 export interface TagState {
@@ -60,7 +62,8 @@ export type ProjectTechnology =
   | "C#"
   | "unity"
   | "java"
-  | "mongo";
+  | "mongo"
+  | "rust";
 
 export interface ProjectTimeline {
   year: number;
@@ -79,6 +82,23 @@ export interface ProjectDescription {
     color?: string;
     internal?: boolean;
   }[];
+}
+
+export type ProjectDeploymentValue =
+  | "heroku"
+  | "vercel"
+  | "k8s"
+  | "digitalocean"
+  | "raspeberrypi"
+  | "fly"
+  | "rubygems"
+  | "gcp"
+  | "discord"
+  | "google-play";
+
+export interface ProjectDeployment {
+  name: string;
+  url?: string;
 }
 
 export interface CompanyDetails {

@@ -5,12 +5,15 @@ import { Project } from "../Projects/types";
 import { useGithubUrl } from "../../utils";
 import { Tag, TagsContainer } from "../../components";
 import BackButton from "../../components/BackButton";
+import { projectDeployedWith, technologyInfo } from "../Projects/useProjects";
 
 interface Props {
   project: Project;
 }
 
 export default function ViewProjectDetails({ project }: Props) {
+  const deploymentInfo = projectDeployedWith(project);
+
   return (
     <section className="container project">
       <div style={{ marginTop: "1rem" }}>
@@ -26,13 +29,16 @@ export default function ViewProjectDetails({ project }: Props) {
           </div>
         </div>
       </div>
-      {/* <TagsContainer>
-        {project.technologies.map((technology) => {
-          const { name, ...style } = technologyInfo(technology);
-
-          return <Tag name={name} style={style} />;
-        })}
-      </TagsContainer> */}
+      {deploymentInfo && (
+        <div style={{ marginLeft: ".5rem" }}>
+          <TagsContainer>
+            {deploymentInfo.map((deployInfo) => {
+              const { url, name } = deployInfo;
+              return <Tag url={url} name={name} />;
+            })}
+          </TagsContainer>
+        </div>
+      )}
 
       {project.watchDemo?.embed && (
         <div className="section">

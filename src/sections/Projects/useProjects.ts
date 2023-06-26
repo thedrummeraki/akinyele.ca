@@ -8,6 +8,8 @@ import {
 import {
   CompanyDetails,
   Project,
+  ProjectDeployment,
+  ProjectDeploymentValue,
   ProjectMadeInfo,
   ProjectTechnology,
   Season,
@@ -30,6 +32,11 @@ const crc: CompanyDetails = {
   website: "http://www.crc.gc.ca",
 };
 
+const deliverect: CompanyDetails = {
+  name: "Deliverect",
+  website: "https://www.deliverect.com",
+};
+
 // const cbn: CompanyDetails = {
 //   name: "Canadian Bank Note",
 //   website: "https://www.cbnco.com",
@@ -38,12 +45,28 @@ const crc: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
+      slug: "vhs",
+      name: '"Record+Replay"',
+      status: "active",
+      synopsis:
+        "Simulate production traffic with real orders to reduce regressions and improve reliability for large customers.",
+      madeIn: {
+        year: 2023,
+        season: "winter",
+      },
+      tags: ["cli"],
+      technologies: ["rust", "python"],
+      company: deliverect,
+      deployedWith: ["gcp"],
+    },
+    {
       slug: "listening-history",
       name: "Spotify Listener",
       featured: true,
       desktopImage: listeningHistoryDesktop,
       status: "active",
-      synopsis: "Listens to my Spotity music 24/7 and gives me more precise insights on my music trends.",
+      synopsis:
+        "Listens to my Spotity music 24/7 and gives me more precise insights on my music trends.",
       madeIn: {
         year: 2022,
         season: "winter",
@@ -65,14 +88,18 @@ export default function useProjects() {
           "authorization) and notifies a Discord channel when a new song is played using a Discord bot " +
           "written in Ruby.",
         services: [
-          {name: "Spotify Web API", url: "https://developer.spotify.com/documentation/web-api"},
-          {name: "Discord API", url: "https://discord.com/developers/docs"}
-        ]
+          {
+            name: "Spotify Web API",
+            url: "https://developer.spotify.com/documentation/web-api",
+          },
+          { name: "Discord API", url: "https://discord.com/developers/docs" },
+        ],
       },
       watchDemo: {
         embed: true,
         link: "https://www.youtube.com/embed/xKzoVuxQSA0",
-      }
+      },
+      deployedWith: ["raspeberrypi", "k8s"],
     },
     {
       slug: "youranime-admin",
@@ -95,6 +122,7 @@ export default function useProjects() {
           { name: "YourAnime Accounts", url: "https://id.youranime.moe" },
         ],
       },
+      deployedWith: ["vercel"],
     },
     {
       slug: "password-sharing",
@@ -110,6 +138,7 @@ export default function useProjects() {
       },
       tags: ["web"],
       technologies: ["rails"],
+      deployedWith: ["heroku"],
     },
     {
       slug: "manga-discovery",
@@ -124,6 +153,7 @@ export default function useProjects() {
       },
       tags: ["oauth", "web"],
       technologies: ["js"],
+      deployedWith: ["fly"],
     },
     {
       slug: "japanese-morphological-analyzer",
@@ -192,6 +222,7 @@ export default function useProjects() {
       },
       technologies: ["ruby"],
       tags: ["api"],
+      deployedWith: ["heroku"],
     },
     {
       slug: "dexify-mobile",
@@ -212,7 +243,7 @@ export default function useProjects() {
       tags: ["mobile"],
       technologies: ["react-native", "node", "ruby"],
       github: true,
-      url: "https://github.com/thedrummeraki/dexify-mobile/releases",
+      url: "https://play.google.com/store/apps/details?id=com.dexifymobile",
       description: {
         normal:
           "A mobile app that allows users to read manga hosted by Mangadex.org. " +
@@ -234,6 +265,7 @@ export default function useProjects() {
           { name: "YourAnime.moe", url: "https://youranime.moe" },
         ],
       },
+      deployedWith: ["google-play"],
     },
     {
       slug: "weather-recommendations-shop-mini",
@@ -262,6 +294,7 @@ export default function useProjects() {
       tags: ["api", "oauth", "web"],
       technologies: ["node", "react", "js"],
       internalUrl: "/music",
+      deployedWith: ["heroku"],
     },
     {
       slug: "shopify-partners-store-access",
@@ -311,7 +344,7 @@ export default function useProjects() {
           "not legal without a proper license. This, maintenance and cost pushed me to convert " +
           "the app to an anime information platform.",
         technical:
-          "This project was originally called My Akinyele and was running Rails 4. In January " +
+          "Powered by Kubernetes. This project was originally called My Akinyele and was running Rails 4. In January " +
           "2017, I pivoted to Slim and the heavy use of Bootstrap. This was a great opportunity " +
           "to introduce a better overall code architecture: following Rails conventions and the use " +
           "of proper HTTP verbs. Not long after in July 2017, I discoved Materialize CSS and switched " +
@@ -320,7 +353,9 @@ export default function useProjects() {
           "I converted to Rails app into a GraphQL API and developed a React frontend, using Material UI. " +
           "A proxy server is present to allow the client to access the API as well as handle caching and " +
           "authentication. I learnt that it's not standard to handle authentication at this level, so one " +
-          "the future is to decouple the authentication from the proxy server.",
+          "the future is to decouple the authentication from the proxy server." +
+          "Very recently, Kubernetes was adopted over Heroku due to the complexity of the app, the cost of " +
+          "operating on Heroku and the error-prone deployment management.",
         services: [
           { name: "Kitsu - More of what you love", url: "https://kitsu.io" },
           {
@@ -333,6 +368,7 @@ export default function useProjects() {
           },
         ],
       },
+      deployedWith: ["k8s", "digitalocean", "heroku", "vercel"],
     },
     {
       slug: "github-discord-bot",
@@ -349,6 +385,7 @@ export default function useProjects() {
         link: "https://www.youtube.com/embed/xQeAJQJvhJM",
         embed: true,
       },
+      deployedWith: ["discord", "heroku"],
     },
     {
       slug: "neets-tracker-bot",
@@ -362,6 +399,7 @@ export default function useProjects() {
         year: 2020,
       },
       internal: true,
+      deployedWith: ["discord", "heroku"],
     },
     {
       slug: "yorushika-game",
@@ -376,6 +414,7 @@ export default function useProjects() {
       },
       technologies: ["react"],
       url: "https://yorushika-game.now.sh",
+      deployedWith: ["vercel"],
     },
     {
       slug: "dexify",
@@ -390,6 +429,7 @@ export default function useProjects() {
         year: 2021,
         season: "fall",
       },
+      deployedWith: ["heroku"],
     },
     {
       slug: "mangadex",
@@ -405,6 +445,7 @@ export default function useProjects() {
       technologies: ["ruby", "sorbet"],
       url: "https://rubygems.org/gems/mangadex",
       github: true,
+      deployedWith: ["rubygems"],
     },
     {
       slug: "youranime-accounts",
@@ -444,6 +485,7 @@ export default function useProjects() {
           },
         ],
       },
+      deployedWith: ["heroku"],
     },
     {
       slug: "misete",
@@ -461,6 +503,7 @@ export default function useProjects() {
         link: "https://www.youtube.com/embed/13vbgK3JLjQ",
         embed: true,
       },
+      deployedWith: ["heroku"],
     },
     {
       slug: "osusume",
@@ -477,6 +520,7 @@ export default function useProjects() {
       company: shopify,
       tags: ["web"],
       technologies: ["react", "rails"],
+      deployedWith: ["gcp"],
     },
     {
       slug: "capstone",
@@ -506,6 +550,7 @@ export default function useProjects() {
       internal: true,
       company: rakuten,
       url: "https://rubygems.org/gems/aki-operations",
+      deployedWith: ["rubygems"],
     },
     {
       slug: "rakuten-database-tool",
@@ -566,6 +611,7 @@ export default function useProjects() {
       },
       tags: ["web"],
       technologies: ["js", "rails"],
+      deployedWith: ["heroku"],
     },
     {
       slug: "youranime-admin",
@@ -578,6 +624,7 @@ export default function useProjects() {
       },
       tags: ["web"],
       technologies: ["rails"],
+      deployedWith: ["vercel"],
     },
     {
       slug: "decode-hackathon-2017",
@@ -598,6 +645,7 @@ export default function useProjects() {
         embed: true,
       },
       hackathon: true,
+      deployedWith: ["heroku"],
     },
     {
       slug: "tanoshimu",
@@ -666,10 +714,13 @@ export function technologyInfo(technology: ProjectTechnology) {
       return { name: "Java", backgroundColor: "#b07219", color: "#fff" };
     }
     case "python": {
-      return { name: "python", backgroundColor: "#234c6f", color: "#fff" }
+      return { name: "python", backgroundColor: "#234c6f", color: "#fff" };
     }
     case "mongo": {
-      return { name: "mongoDB", backgroundColor: "#00ed64", color: "#000" }
+      return { name: "mongoDB", backgroundColor: "#00ed64", color: "#000" };
+    }
+    case "rust": {
+      return { name: "Rust" };
     }
     default: {
       return {
@@ -678,6 +729,45 @@ export function technologyInfo(technology: ProjectTechnology) {
         backgroundColor: "#333",
       };
     }
+  }
+}
+
+export function projectDeployedWith(
+  project: Project
+): ProjectDeployment[] | null {
+  if (!project.deployedWith) {
+    return null;
+  }
+
+  return project.deployedWith.map(deployInfo);
+}
+
+function deployInfo(value: ProjectDeploymentValue): ProjectDeployment {
+  switch (value) {
+    case "digitalocean": {
+      return { name: "DigitalOcean", url: "https://www.digitalocean.com/" };
+    }
+    case "discord":
+      return { name: "Discord", url: "https://discord.com" };
+    case "fly":
+      return { name: "Fly.io", url: "https://fly.io" };
+    case "gcp":
+      return {
+        name: "Google Cloud Platform",
+        url: "https://cloud.google.com/",
+      };
+    case "google-play":
+      return { name: "Google Play", url: "https://play.google.com" };
+    case "heroku":
+      return { name: "Heroku", url: "https://www.heroku.com/" };
+    case "k8s":
+      return { name: "Kubernetes", url: "https://kubernetes.io/" };
+    case "raspeberrypi":
+      return { name: "Raspberry Pi", url: "https://www.raspberrypi.org/" };
+    case "rubygems":
+      return { name: "RubyGems", url: "https://rubygems.org" };
+    case "vercel":
+      return { name: "Vercel", url: "https://vercel.com" };
   }
 }
 
