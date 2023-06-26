@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface BasicProject {
   hidden?: boolean;
   featured?: boolean;
@@ -72,8 +74,8 @@ export interface ProjectTimeline {
 }
 
 export interface ProjectDescription {
-  normal: string;
-  technical?: string;
+  normal: ReactNode;
+  technical?: ReactNode;
   challenges?: string;
   timeline?: ProjectTimeline[];
   services?: {

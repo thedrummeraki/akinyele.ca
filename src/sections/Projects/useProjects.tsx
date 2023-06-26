@@ -333,29 +333,58 @@ export default function useProjects() {
       },
       description: {
         // todo: improve text below
-        normal:
-          "A platform that provides anime streaming information, namely when any anime " +
-          "is airing and on which platforms it's known to be airing on. I built this project " +
-          "to promote legally watch anime online. Over the 5+ years I've been working on this, " +
-          "it's been very a humbling experience to see how other platforms work and how I can " +
-          "improve mine. " +
-          "Originally, this platform was a streaming anime platform I built to watch anime with " +
-          "loved ones. Streaming, although not available to the public, licensed media is usually " +
-          "not legal without a proper license. This, maintenance and cost pushed me to convert " +
-          "the app to an anime information platform.",
-        technical:
-          "Powered by Kubernetes. This project was originally called My Akinyele and was running Rails 4. In January " +
-          "2017, I pivoted to Slim and the heavy use of Bootstrap. This was a great opportunity " +
-          "to introduce a better overall code architecture: following Rails conventions and the use " +
-          "of proper HTTP verbs. Not long after in July 2017, I discoved Materialize CSS and switched " +
-          "from Bootstrap. It was not a tremendous change, as the CSS classes were similar to Bootstrap. " +
-          "Following a hiatus for about 1 year, the project was reborn as YourAnime.moe in June 2019. " +
-          "I converted to Rails app into a GraphQL API and developed a React frontend, using Material UI. " +
-          "A proxy server is present to allow the client to access the API as well as handle caching and " +
-          "authentication. I learnt that it's not standard to handle authentication at this level, so one goal for " +
-          "the future is to decouple the authentication from the proxy server." +
-          "Very recently, Kubernetes was adopted over Heroku due to the complexity of the app, the cost of " +
-          "operating on Heroku and the error-prone deployment management.",
+        normal: (
+          <>
+            <p>
+              A platform that provides anime streaming information, namely when
+              any anime is airing and on which platforms it's known to be airing
+              on. I built this project to promote where one can legally watch
+              anime online. Over the 6+ years I've been working on this project,
+              it's been very a humbling experience to see how other platforms
+              work and how I can improve mine.
+            </p>
+            <p>
+              This platform was originally meant for streaming and watching
+              anime with loved ones. Streaming licensed media, although not
+              available to the public, is usually not legal without a proper
+              license. This, maintenance effort and overall cost pushed me to
+              convert the app to an anime information platform.
+            </p>
+          </>
+        ),
+        technical: (
+          <>
+            <p>
+              This project was originally called My Akinyele and was running
+              Rails 4. In January 2017, I pivoted to Slim (HTML dynamic layout
+              and templates -- replacing Rails ERB) and the heavy use of
+              Bootstrap. This was a great opportunity to introduce a better
+              overall code architecture such as following Rails conventions and
+              the use of proper HTTP verbs.
+            </p>
+            <p>
+              Shortly after, in July 2017, I discoved Materialize CSS, which I
+              adopted in favour of Bootstrap. It was not a tremendous change, as
+              the CSS classes were similar to Bootstrap.
+            </p>
+            <p>
+              Following a 1-year development hiatus, the project was reborn as
+              YourAnime.moe in June 2019. I converted the full Rails app into a
+              GraphQL API-only app and developed a React frontend, using
+              Material UI. A proxy server is present to allow the client to
+              access the API as well as handle caching and authentication. I
+              learnt that it's not standard to handle authentication at this
+              level, so one goal for the future is to decouple the
+              authentication from the proxy server.
+            </p>
+            <p>
+              In June 2023, Kubernetes was mainly adopted over Heroku due to the
+              complexity of the app. The ever-so rising cost of operating and
+              the error-prone deployment management on Heroku were also big
+              motivators.
+            </p>
+          </>
+        ),
         services: [
           { name: "Kitsu - More of what you love", url: "https://kitsu.io" },
           {
