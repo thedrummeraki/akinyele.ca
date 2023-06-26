@@ -352,7 +352,7 @@ export default function useProjects() {
           "Following a hiatus for about 1 year, the project was reborn as YourAnime.moe in June 2019. " +
           "I converted to Rails app into a GraphQL API and developed a React frontend, using Material UI. " +
           "A proxy server is present to allow the client to access the API as well as handle caching and " +
-          "authentication. I learnt that it's not standard to handle authentication at this level, so one " +
+          "authentication. I learnt that it's not standard to handle authentication at this level, so one goal for " +
           "the future is to decouple the authentication from the proxy server." +
           "Very recently, Kubernetes was adopted over Heroku due to the complexity of the app, the cost of " +
           "operating on Heroku and the error-prone deployment management.",
