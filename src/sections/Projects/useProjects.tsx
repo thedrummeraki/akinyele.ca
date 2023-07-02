@@ -118,7 +118,10 @@ export default function useProjects() {
       description: {
         normal: "",
         services: [
-          { name: "YourAnime.moe", url: "https://youranime.moe" },
+          {
+            name: "YourAnime.moe",
+            url: "https://github.com/youranime-moe/youranime.moe",
+          },
           { name: "YourAnime Accounts", url: "https://id.youranime.moe" },
         ],
       },
@@ -262,7 +265,10 @@ export default function useProjects() {
           "Unfortunately, I didn't manage to optimize the manga reader for iOS devices. ",
         services: [
           { name: "MangaDex", url: "https://mangadex.org" },
-          { name: "YourAnime.moe", url: "https://youranime.moe" },
+          {
+            name: "YourAnime.moe",
+            url: "https://github.com/youranime-moe/youranime.moe",
+          },
         ],
       },
       deployedWith: ["google-play"],
@@ -326,7 +332,7 @@ export default function useProjects() {
       tags: ["web", "oauth", "api"],
       technologies: ["rails", "react", "node"],
       github: "https://github.com/YourAnime-moe/youranime.moe",
-      url: "https://youranime.moe",
+      // url: "https://youranime.moe",
       watchDemo: {
         link: "https://www.youtube.com/embed/1ShelOHqjUE",
         embed: true,
