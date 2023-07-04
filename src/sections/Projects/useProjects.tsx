@@ -45,6 +45,20 @@ const deliverect: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
+      slug: "spin",
+      name: "Project Viewer",
+      status: "active",
+      synopsis:
+        "Coming soon. This will allow people to spin up some of my personal projects on demand using DigitalOcean servers.",
+      madeIn: {
+        year: 2023,
+        season: "summer",
+      },
+      tags: ["api", "web", "infra"],
+      technologies: ["rails", "rust", "js"],
+      deployedWith: ["digitalocean", "heroku"],
+    },
+    {
       slug: "vhs",
       name: '"Record+Replay"',
       status: "active",

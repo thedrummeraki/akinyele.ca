@@ -43,7 +43,8 @@ export type ProjectTag =
   | "library"
   | "game"
   | "oauth"
-  | "cli";
+  | "cli"
+  | "infra";
 export type Season = "fall" | "winter" | "spring" | "summer";
 
 export interface TagState {
