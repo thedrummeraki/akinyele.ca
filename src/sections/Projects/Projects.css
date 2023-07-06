@@ -2,7 +2,8 @@
   text-align: center;
 }
 
-.projects .filter {
+.projects .filter,
+.project .filter {
   background-color: #222;
   padding: 1em;
   font-size: 1em;
@@ -13,7 +14,8 @@
   transition: background-color 0.1s ease-in-out;
 }
 
-.projects .filter:focus {
+.projects .filter:focus,
+.project .filter:focus {
   background-color: #2a2a2a;
 }
 

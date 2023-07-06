@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Header, IconLink, Tag, TagsContainer } from "../../components";
 import BackButton from "../../components/BackButton";
 import YoutubeEmbedModal from "../../components/YoutubeEmbed";
@@ -34,7 +35,14 @@ export default function ViewAllProjects() {
         <div style={{ marginTop: "1rem" }}>
           <BackButton to="/projects" />
         </div>
-        <h2 className="title">All of my projects</h2>
+        <div className="title-container">
+          <h2 className="title">All of my projects</h2>
+          <div style={{ display: "none", alignItems: "center" }}>
+            <Link className="button" to="/projects/try">
+              Try a project...
+            </Link>
+          </div>
+        </div>
 
         <div className="table">
           <div className="row">

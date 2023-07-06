@@ -3,6 +3,7 @@ import { ReactNode } from "react";
 export interface BasicProject {
   hidden?: boolean;
   featured?: boolean;
+  spin?: SpinSettings;
   status: "active" | "stopped" | "done" | "paused";
   slug: string;
   name: string;
@@ -25,6 +26,11 @@ export interface BasicProject {
     link: string;
   };
   deployedWith?: ProjectDeploymentValue[];
+}
+
+export interface SpinSettings {
+  slug: string;
+  linkedTo?: string[];
 }
 
 export interface FeaturedProject extends BasicProject {

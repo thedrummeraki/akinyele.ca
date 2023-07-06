@@ -8,6 +8,7 @@ import {
   DexifyPrivacyPolicy,
   ViewProject,
   ViewAllProjects,
+  Try,
 } from "../sections";
 import ScrollToTop from "./ScrollToTop";
 
@@ -22,6 +23,7 @@ export default function AppRoutes() {
         <Route path="/about" element={<About />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/archive" element={<ViewAllProjects />} />
+        <Route path="/projects/try" element={<Try />} />
         <Route path="/projects/:slug" element={<ViewProject />} />
         <Route path="/music" element={<Music />} />
         <Route path="/dexify/privacy" element={<DexifyPrivacyPolicy />} />

@@ -26,6 +26,7 @@ export default function Header({ name = "Akinyele Cafe-Febrissy" }: Props) {
       <div className="menu" style={{ display: "flex", flexGrow: 1 }}>
         <HeaderLink to="/projects">Featured work</HeaderLink>
         <HeaderLink to="/projects/archive">All projects</HeaderLink>
+        {/* <HeaderLink to="/projects/try">Try...</HeaderLink> */}
         {/* <HeaderLink to="/about">About me</HeaderLink> */}
         <div className="item">
           <SocialLink
