@@ -15,6 +15,8 @@ interface Props {
 export default function ViewProjectDetails({ project }: Props) {
   const deploymentInfo = projectDeployedWith(project);
   const [showSpinInfo, setShowSpinInfo] = useState(false);
+  const [projectRequest, setProjectRequest] = useState<any>();
+  const [status, setStatus] = useState<string>();
   const [requesterEmail, setRequesterEmail] = useState<string | null>(
     localStorage.getItem("requester.email")
   );
@@ -37,24 +39,53 @@ export default function ViewProjectDetails({ project }: Props) {
         method: "POST",
       }
     )
-      .then(console.log)
+      .then((res) => res.json())
+      .then(setProjectRequest)
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [requesterEmail, spin]);
 
-  // useEffect(() => {
-  //   if (!spin) {
-  //     return;
-  //   }
+  useEffect(() => {
+    if (spin && !projectRequest) {
+      const currentProject = localStorage.getItem(spin.slug);
+      if (currentProject) {
+        const { requester, id } = JSON.parse(currentProject);
+        fetch(`http://localhost/users/${requester}/requests/${id}`)
+          .then((res) => res.json())
+          .then(setProjectRequest)
+          .catch(console.error);
+      }
+    }
+  }, [spin, projectRequest]);
 
-  //   const encodedEmail = window.btoa(requesterEmail);
-  //   fetch(
-  //     `http://localhost:3000/users/${encodedEmail}/requests?project_slug=${spin.slug}`,
-  //     {
-  //       method: "POST",
-  //     }
-  //   );
-  // }, [spin]);
+  useEffect(() => {
+    if (
+      spin &&
+      requesterEmail &&
+      projectRequest &&
+      (projectRequest.status !== "ready" || projectRequest.status !== "failed")
+    ) {
+      const encodedEmail = window.btoa(requesterEmail);
+      let id = setInterval(() => {
+        fetch(
+          `http://localhost/users/${encodedEmail}/requests/${projectRequest.id}`
+        )
+          .then((res) => res.json())
+          .then((res) => {
+            const data = {
+              id: res.id,
+              requester: encodedEmail,
+            };
+            localStorage.setItem(`${spin.slug}`, JSON.stringify(data));
+          })
+          .catch(console.error);
+      }, 1000);
+
+      return () => clearInterval(id);
+    }
+  }, [projectRequest, requesterEmail, spin]);
+
+  console.log({ projectRequest });
 
   return (
     <section className="container project">
@@ -86,9 +117,9 @@ export default function ViewProjectDetails({ project }: Props) {
             <div className="spin-info-container">
               <p className="details">
                 Spin up an instance of <i>"{project.name}"</i> by entering your
-                email below. The application will be able for approximately 24
-                hours. You will have the option to "destroy the application"
-                once you're done with it.
+                email below. The application will be able for approximately 3
+                hours from the moment it's ready. You will have the option to
+                "destroy the application" once you're done with it.
                 <br />
                 <br />
                 To prevent abuse, only one instance of an application can be
@@ -105,7 +136,9 @@ export default function ViewProjectDetails({ project }: Props) {
                   disabled={requesterEmail?.trim().length === 0}
                   onClick={requestNow}
                 >
-                  Request now
+                  {projectRequest && projectRequest.status
+                    ? projectRequest.status
+                    : "Request now"}
                 </button>
               </div>
             </div>

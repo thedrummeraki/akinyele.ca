@@ -119,10 +119,10 @@ export default function useProjects() {
       slug: "youranime-admin",
       name: "YourAnime.moe Admin Dashboard",
       status: "done",
-      spin: {
-        slug: "youranime-moe/admin",
-        linkedTo: ["thedrummeraki/tanoshimu"],
-      },
+      // spin: {
+      //   slug: "youranime-moe/admin",
+      //   linkedTo: ["thedrummeraki/tanoshimu"],
+      // },
       synopsis:
         "A simple dashboard there to help me manage content and jobs for the " +
         "YourAnime.moe API.",
@@ -149,7 +149,7 @@ export default function useProjects() {
       slug: "password-sharing",
       name: "My password sharing",
       status: "done",
-      spin: { slug: "thedrummeraki/sharing-is-caring" },
+      // spin: { slug: "thedrummeraki/sharing-is-caring" },
       synopsis:
         "A personal hackathon-style side-project allowing me to share " +
         "passwords to close ones without worrying about compromising my " +
@@ -343,7 +343,7 @@ export default function useProjects() {
       slug: "youranime",
       name: "YourAnime.moe",
       status: "active",
-      spin: { slug: "youranime-moe/youranime.moe" },
+      // spin: { slug: "youranime-moe/youranime.moe" },
       synopsis: "The next go-to anime streaming information website.",
       featured: true,
       mobileImage: youranimeMobile,
@@ -661,7 +661,7 @@ export default function useProjects() {
       slug: "notaki",
       name: "Notaki.ca (formerly forevernote.ca)",
       status: "paused",
-      spin: { slug: "thedrummeraki/notaki.ca" },
+      // spin: { slug: "thedrummeraki/notaki.ca" },
       synopsis: "A note-taking app for students",
       madeIn: {
         year: 2017,
