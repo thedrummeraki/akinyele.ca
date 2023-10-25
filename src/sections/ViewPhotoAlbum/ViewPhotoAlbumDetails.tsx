@@ -69,7 +69,8 @@ function PhotoImage({
   return (
     <a
       href="#"
-      onClick={() => {
+      onClick={(e) => {
+        e.preventDefault();
         window.open(fullPhotoSrc(photoLink), "_blank");
       }}
     >
