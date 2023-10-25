@@ -67,17 +67,24 @@ function PhotoImage({
   };
 
   return (
-    <img
-      ref={imgRef}
-      src={compressedPhotoSrc(photoLink)}
-      alt={photoLink.filename}
-      className="photo"
-      onLoad={() => {
-        if (imgRef.current) {
-          imgRef.current.style.opacity = "1";
-        }
-        console.log("loaded", photoLink.filename);
+    <a
+      href="#"
+      onClick={() => {
+        window.open(fullPhotoSrc(photoLink), "_blank");
       }}
-    />
+    >
+      <img
+        ref={imgRef}
+        src={compressedPhotoSrc(photoLink)}
+        alt={photoLink.filename}
+        className="photo"
+        onLoad={() => {
+          if (imgRef.current) {
+            imgRef.current.style.opacity = "1";
+          }
+          console.log("loaded", photoLink.filename);
+        }}
+      />
+    </a>
   );
 }
