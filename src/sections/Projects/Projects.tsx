@@ -225,19 +225,23 @@ export default function Projects() {
   );
 }
 
-function Tag({
+export function Tag({
   name,
   selected,
+  hidden,
   onClick,
 }: {
   name: string;
   selected?: boolean;
+  hidden?: boolean;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }) {
   return (
     <button
       onClick={onClick}
-      className={`button${selected ? " selected" : ""}`}
+      className={`button${selected ? " selected" : ""}${
+        hidden ? " hidden" : ""
+      }`}
     >
       {name}
     </button>

@@ -6,6 +6,7 @@ import { useGithubUrl } from "../../utils";
 import { Tag, TagsContainer } from "../../components";
 import BackButton from "../../components/BackButton";
 import { projectDeployedWith, technologyInfo } from "../Projects/useProjects";
+import { useCallback, useEffect, useState } from "react";
 
 interface Props {
   project: Project;
@@ -13,6 +14,78 @@ interface Props {
 
 export default function ViewProjectDetails({ project }: Props) {
   const deploymentInfo = projectDeployedWith(project);
+  const [showSpinInfo, setShowSpinInfo] = useState(false);
+  const [projectRequest, setProjectRequest] = useState<any>();
+  const [status, setStatus] = useState<string>();
+  const [requesterEmail, setRequesterEmail] = useState<string | null>(
+    localStorage.getItem("requester.email")
+  );
+
+  const { spin } = project;
+
+  const [loading, setLoading] = useState(false);
+  const requestNow = useCallback(() => {
+    console.log({ requesterEmail });
+    if (!requesterEmail || !spin) {
+      return;
+    }
+    const encodedEmail = window.btoa(requesterEmail);
+    setLoading(true);
+    fetch(
+      `http://localhost/users/${encodedEmail}/requests?project_slug=${encodeURIComponent(
+        spin.slug
+      )}`,
+      {
+        method: "POST",
+      }
+    )
+      .then((res) => res.json())
+      .then(setProjectRequest)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, [requesterEmail, spin]);
+
+  useEffect(() => {
+    if (spin && !projectRequest) {
+      const currentProject = localStorage.getItem(spin.slug);
+      if (currentProject) {
+        const { requester, id } = JSON.parse(currentProject);
+        fetch(`http://localhost/users/${requester}/requests/${id}`)
+          .then((res) => res.json())
+          .then(setProjectRequest)
+          .catch(console.error);
+      }
+    }
+  }, [spin, projectRequest]);
+
+  useEffect(() => {
+    if (
+      spin &&
+      requesterEmail &&
+      projectRequest &&
+      (projectRequest.status !== "ready" || projectRequest.status !== "failed")
+    ) {
+      const encodedEmail = window.btoa(requesterEmail);
+      let id = setInterval(() => {
+        fetch(
+          `http://localhost/users/${encodedEmail}/requests/${projectRequest.id}`
+        )
+          .then((res) => res.json())
+          .then((res) => {
+            const data = {
+              id: res.id,
+              requester: encodedEmail,
+            };
+            localStorage.setItem(`${spin.slug}`, JSON.stringify(data));
+          })
+          .catch(console.error);
+      }, 1000);
+
+      return () => clearInterval(id);
+    }
+  }, [projectRequest, requesterEmail, spin]);
+
+  console.log({ projectRequest });
 
   return (
     <section className="container project">
@@ -20,8 +93,56 @@ export default function ViewProjectDetails({ project }: Props) {
         <BackButton to="/projects" />
       </div>
       <div style={{ display: "flex", marginTop: "1rem" }}>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <h2 style={{ margin: "0 0 0 1rem" }}>{project.name}</h2>
+        <div
+          style={{ display: "flex", flexDirection: "column", width: "100%" }}
+        >
+          <div className="title-container">
+            <h2 className="title">{project.name}</h2>
+            {project.spin ? (
+              <div className="try">
+                <button
+                  className="button"
+                  onClick={() => setShowSpinInfo((current) => !current)}
+                >
+                  {loading
+                    ? "Please wait..."
+                    : showSpinInfo
+                    ? "Cancel"
+                    : "Try now!"}
+                </button>
+              </div>
+            ) : null}
+          </div>
+          {showSpinInfo ? (
+            <div className="spin-info-container">
+              <p className="details">
+                Spin up an instance of <i>"{project.name}"</i> by entering your
+                email below. The application will be able for approximately 3
+                hours from the moment it's ready. You will have the option to
+                "destroy the application" once you're done with it.
+                <br />
+                <br />
+                To prevent abuse, only one instance of an application can be
+                requested at once.
+              </p>
+              <div className="spin-info">
+                <input
+                  className="filter"
+                  placeholder="Email address: john.doe@email.com"
+                  onChange={(e) => setRequesterEmail(e.target.value)}
+                />
+                <button
+                  className="button"
+                  disabled={requesterEmail?.trim().length === 0}
+                  onClick={requestNow}
+                >
+                  {projectRequest && projectRequest.status
+                    ? projectRequest.status
+                    : "Request now"}
+                </button>
+              </div>
+            </div>
+          ) : null}
           <div className="synopsis">{project.synopsis}</div>
           <div style={{ display: "flex", gap: 10, margin: "1rem" }}>
             <GithubLink project={project} />
