@@ -9,6 +9,7 @@ import {
   ViewProject,
   ViewAllProjects,
   Try,
+  ViewPhotoAlbum,
 } from "../sections";
 import ScrollToTop from "./ScrollToTop";
 
@@ -27,6 +28,7 @@ export default function AppRoutes() {
         <Route path="/projects/:slug" element={<ViewProject />} />
         <Route path="/music" element={<Music />} />
         <Route path="/dexify/privacy" element={<DexifyPrivacyPolicy />} />
+        <Route path="/photos/:id" element={<ViewPhotoAlbum />} />
       </Routes>
     </MusicProvider>
   );

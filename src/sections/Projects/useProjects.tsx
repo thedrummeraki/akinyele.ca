@@ -166,7 +166,7 @@ export default function useProjects() {
       slug: "manga-discovery",
       name: "Discover Manga",
       status: "done",
-      spin: { slug: "discover-manga" },
+      // spin: { slug: "discover-manga" },
       synopsis:
         '"Seeing is believing". Visitors read the first chapter of a manga ' +
         "picked at random and can quickly decide if they like or not.",

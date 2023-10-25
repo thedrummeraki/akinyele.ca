@@ -225,7 +225,7 @@ export default function Projects() {
   );
 }
 
-function Tag({
+export function Tag({
   name,
   selected,
   onClick,
