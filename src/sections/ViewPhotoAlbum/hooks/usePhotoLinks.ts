@@ -5,10 +5,12 @@ export function usePhotoLinks<T>(links: Array<T>, perPage: number = 20) {
   const [items, setItems] = useState<Array<T>>([]);
 
   const nextPage = () => {
+    window.scrollTo(0, 0);
     setPage((current) => current + 1);
   };
 
   const previousPage = () => {
+    window.scrollTo(0, document.body.scrollHeight);
     setPage((current) => current - 1);
   };
 

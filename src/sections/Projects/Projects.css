@@ -50,6 +50,10 @@
   border: 1px solid #777;
 }
 
+.project .tag.hidden {
+  display: none;
+}
+
 .projects .tag:not(.selected):focus {
   background-color: #222;
   color: #eee;

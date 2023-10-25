@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+.photos .pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5rem 0;
+}
+
 .photos .actions {
   display: flex;
   flex-direction: row;
@@ -33,6 +40,10 @@
   border: 1px solid #777;
 }
 
+.hidden {
+  opacity: 0;
+}
+
 .photos .tag:not(.selected):focus {
   background-color: #222;
   color: #eee;
@@ -42,6 +53,12 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1rem 0.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .photos .photos-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 .photos .photos-container .wrapper {

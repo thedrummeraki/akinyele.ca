@@ -22,9 +22,9 @@ export default function ViewPhotoAlbumDetails({ manifest }: Props) {
         <Tag name="Anime" onClick={() => {}} />
         <Tag name="Historical sites" onClick={() => {}} />
       </div> */}
-      <div>
-        {hasPrevious && <Tag name="Previous" onClick={previousPage} />}
-        {hasNext && <Tag name="Next" onClick={nextPage} />}
+      <div className="pagination">
+        <Tag name="Previous" onClick={previousPage} hidden={!hasPrevious} />
+        <Tag name="Next" onClick={nextPage} hidden={!hasNext} />
       </div>
       <div className="photos-container">
         {links.map((photoLink) => (
@@ -39,9 +39,9 @@ export default function ViewPhotoAlbumDetails({ manifest }: Props) {
           </div>
         ))}
       </div>
-      <div>
-        {hasPrevious && <Tag name="Previous" onClick={previousPage} />}
-        {hasNext && <Tag name="Next" onClick={nextPage} />}
+      <div className="pagination">
+        <Tag name="Previous" onClick={previousPage} hidden={!hasPrevious} />
+        <Tag name="Next" onClick={nextPage} hidden={!hasNext} />
       </div>
     </section>
   );
