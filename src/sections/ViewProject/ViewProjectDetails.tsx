@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
 import { github, openInNew } from "../../icons";
-import { Project } from "../Projects/types";
+import { Project, SpinnableProject } from "../Projects/types";
 
 import { useGithubUrl } from "../../utils";
 import { Tag, TagsContainer } from "../../components";
 import BackButton from "../../components/BackButton";
 import { projectDeployedWith, technologyInfo } from "../Projects/useProjects";
 import { useCallback, useEffect, useState } from "react";
+import useSpin from "./useSpin";
+import SpinButton from "./SpinButton";
+import SpinBanner from "./SpinBanner";
 
 interface Props {
   project: Project;
@@ -24,39 +27,40 @@ export default function ViewProjectDetails({ project }: Props) {
   const { spin } = project;
 
   const [loading, setLoading] = useState(false);
-  const requestNow = useCallback(() => {
-    console.log({ requesterEmail });
-    if (!requesterEmail || !spin) {
-      return;
-    }
-    const encodedEmail = window.btoa(requesterEmail);
-    setLoading(true);
-    fetch(
-      `http://localhost/users/${encodedEmail}/requests?project_slug=${encodeURIComponent(
-        spin.slug
-      )}`,
-      {
-        method: "POST",
-      }
-    )
-      .then((res) => res.json())
-      .then(setProjectRequest)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, [requesterEmail, spin]);
+  const [projectUrl, setProjectUrl] = useState<string>();
+  // const requestNow = useCallback(() => {
+  //   console.log({ requesterEmail });
+  //   if (!requesterEmail || !spin) {
+  //     return;
+  //   }
+  //   const encodedEmail = window.btoa(requesterEmail);
+  //   setLoading(true);
+  //   fetch(
+  //     `http://localhost/users/${encodedEmail}/requests?project_slug=${encodeURIComponent(
+  //       spin.slug
+  //     )}`,
+  //     {
+  //       method: "POST",
+  //     }
+  //   )
+  //     .then((res) => res.json())
+  //     .then(setProjectRequest)
+  //     .catch(console.error)
+  //     .finally(() => setLoading(false));
+  // }, [requesterEmail, spin]);
 
-  useEffect(() => {
-    if (spin && !projectRequest) {
-      const currentProject = localStorage.getItem(spin.slug);
-      if (currentProject) {
-        const { requester, id } = JSON.parse(currentProject);
-        fetch(`http://localhost/users/${requester}/requests/${id}`)
-          .then((res) => res.json())
-          .then(setProjectRequest)
-          .catch(console.error);
-      }
-    }
-  }, [spin, projectRequest]);
+  // useEffect(() => {
+  //   if (spin && !projectRequest) {
+  //     const currentProject = localStorage.getItem(spin.slug);
+  //     if (currentProject) {
+  //       const { requester, id } = JSON.parse(currentProject);
+  //       fetch(`http://localhost/users/${requester}/requests/${id}`)
+  //         .then((res) => res.json())
+  //         .then(setProjectRequest)
+  //         .catch(console.error);
+  //     }
+  //   }
+  // }, [spin, projectRequest]);
 
   useEffect(() => {
     if (
@@ -100,53 +104,20 @@ export default function ViewProjectDetails({ project }: Props) {
             <h2 className="title">{project.name}</h2>
             {project.spin ? (
               <div className="try">
-                <button
-                  className="button"
-                  onClick={() => setShowSpinInfo((current) => !current)}
-                >
-                  {loading
-                    ? "Please wait..."
-                    : showSpinInfo
-                    ? "Cancel"
-                    : "Try now!"}
-                </button>
+                <SpinButton project={asSpinnableProject(project)} />
               </div>
             ) : null}
           </div>
-          {showSpinInfo ? (
-            <div className="spin-info-container">
-              <p className="details">
-                Spin up an instance of <i>"{project.name}"</i> by entering your
-                email below. The application will be able for approximately 3
-                hours from the moment it's ready. You will have the option to
-                "destroy the application" once you're done with it.
-                <br />
-                <br />
-                To prevent abuse, only one instance of an application can be
-                requested at once.
-              </p>
-              <div className="spin-info">
-                <input
-                  className="filter"
-                  placeholder="Email address: john.doe@email.com"
-                  onChange={(e) => setRequesterEmail(e.target.value)}
-                />
-                <button
-                  className="button"
-                  disabled={requesterEmail?.trim().length === 0}
-                  onClick={requestNow}
-                >
-                  {projectRequest && projectRequest.status
-                    ? projectRequest.status
-                    : "Request now"}
-                </button>
-              </div>
-            </div>
-          ) : null}
+          {/* {project.spin ? (
+            <SpinBanner
+              project={asSpinnableProject(project)}
+              onProjectUrlReady={setProjectUrl}
+            />
+          ) : null} */}
           <div className="synopsis">{project.synopsis}</div>
           <div style={{ display: "flex", gap: 10, margin: "1rem" }}>
             <GithubLink project={project} />
-            <ExternalLink project={project} />
+            <ExternalLink project={project} tryLink={projectUrl} />
           </div>
         </div>
       </div>
@@ -263,7 +234,13 @@ function GithubLink({ project }: { project: Project }) {
   );
 }
 
-function ExternalLink({ project }: { project: Project }) {
+function ExternalLink({
+  project,
+  tryLink,
+}: {
+  project: Project;
+  tryLink?: string;
+}) {
   const title = "Open " + project.name;
 
   const imageMarkup = <img src={openInNew} className="icon" alt={title} />;
@@ -274,13 +251,22 @@ function ExternalLink({ project }: { project: Project }) {
         {imageMarkup}
       </Link>
     );
-  } else if (!project.url && !project.internalUrl) {
+  } else if (!project.url && !project.internalUrl && !tryLink) {
     return null;
   }
 
   return (
-    <a href={project.url} target="_blank" rel="noreferrer" title={title}>
+    <a
+      href={tryLink || project.url}
+      target="_blank"
+      rel="noreferrer"
+      title={title}
+    >
       {imageMarkup}
     </a>
   );
+}
+
+function asSpinnableProject(project: Project): SpinnableProject {
+  return project.spin! && (project as SpinnableProject);
 }

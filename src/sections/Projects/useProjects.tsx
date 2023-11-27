@@ -166,7 +166,7 @@ export default function useProjects() {
       slug: "manga-discovery",
       name: "Discover Manga",
       status: "done",
-      // spin: { slug: "discover-manga" },
+      spin: { slug: "discover-manga" },
       synopsis:
         '"Seeing is believing". Visitors read the first chapter of a manga ' +
         "picked at random and can quickly decide if they like or not.",
@@ -343,7 +343,7 @@ export default function useProjects() {
       slug: "youranime",
       name: "YourAnime.moe",
       status: "active",
-      // spin: { slug: "youranime-moe/youranime.moe" },
+      spin: { slug: "tanoshimu" },
       synopsis: "The next go-to anime streaming information website.",
       featured: true,
       mobileImage: youranimeMobile,

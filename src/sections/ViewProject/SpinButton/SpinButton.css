@@ -1,0 +1,32 @@
+button.on {
+  background-color: #95c2ae;
+  color: #102308;
+}
+
+button.on:hover {
+  background-color: #a8dac4;
+}
+
+button.off {
+  background-color: #808080;
+  color: #fff;
+}
+
+button.off:hover {
+  background-color: #A0A0A0;
+}
+
+button.booting_up {
+  background-color: #F2CE72;
+  color: #333;
+}
+
+button.waiting {
+  background-color: #FFC61A;
+  color: #7F630D;
+}
+
+button.booting_up:hover, button.waiting:hover, button[disabled]:hover {
+  cursor: wait;
+}
+
