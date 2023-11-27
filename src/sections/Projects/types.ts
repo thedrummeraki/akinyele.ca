@@ -41,6 +41,10 @@ export interface FeaturedProject extends BasicProject {
 
 export type Project = BasicProject & FeaturedProject;
 
+export interface SpinnableProject extends Project {
+  spin: SpinSettings;
+}
+
 export type ProjectTag =
   | "web"
   | "mobile"
