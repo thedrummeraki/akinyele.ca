@@ -49,14 +49,15 @@ export default function useProjects() {
       name: "Project Viewer",
       status: "active",
       synopsis:
-        "Coming soon. This will allow people to spin up some of my personal projects on demand using DigitalOcean servers.",
+        "Allows people to spin up some of my personal projects on demand using DigitalOcean servers directly from my website. More projects to be added soon.",
       madeIn: {
         year: 2023,
         season: "summer",
       },
+      github: "https://github.com/akinyele-spin",
       tags: ["api", "web", "infra"],
       technologies: ["rails", "rust", "js"],
-      deployedWith: ["digitalocean", "heroku"],
+      deployedWith: ["digitalocean", "fly"],
     },
     {
       slug: "vhs",
