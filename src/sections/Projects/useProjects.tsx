@@ -45,9 +45,57 @@ const deliverect: CompanyDetails = {
 export default function useProjects() {
   const projects: Project[] = [
     {
+      slug: "dexify-mobile-new",
+      name: "Dexify (mobile)",
+      synopsis:
+        "Unofficial Mangadex.org mobile client. This is a redesign of Dexify (mobile) from 2022.",
+      status: "active",
+      beta: true,
+      madeIn: {
+        year: 2024,
+        season: "winter",
+      },
+      tags: ["mobile"],
+      technologies: ["react-native"],
+      description: {
+        normal:
+          "A mobile app that allows users to read manga hosted by Mangadex.org. " +
+          "Development started in late 2021 after I wanted to provide a way to natively " +
+          "ready manga on any Android and iOS device. This is a perfect opportunity to " +
+          "learn about React Native.",
+        technical:
+          "The app is primarily built with React Native. A node.js server acts as a " +
+          "proxy to the Mangadex API. An additional service built using Ruby returns a list of " +
+          "manga that have an airing anime. I get this information from my YourAnime.moe API. " +
+          "Dog fooding for the win!",
+        challenges:
+          "Implementing the manga reader was the most difficult part of the project. " +
+          "I stepped out of my comfort zone and learn about animations which is something I had" +
+          "always gone to great lengths to avoid. Image performance also was taken into account ." +
+          "Unfortunately, I didn't manage to optimize the manga reader for iOS devices. ",
+        services: [{ name: "MangaDex", url: "https://mangadex.org" }],
+      },
+      deployedWith: ["google-play", "apple-app-store"],
+    },
+    {
+      slug: "anime-scheduler",
+      name: "Anime on Calendar",
+      status: "done",
+      synopsis:
+        "A small project which allows me to synchronize anime shows as they air on my Google Calendar.",
+      madeIn: {
+        year: 2024,
+        season: "winter",
+      },
+      github: "https://github.com/thedrummeraki/anime-schedule",
+      tags: ["api", "cli"],
+      technologies: ["ruby", "rust"],
+      deployedWith: ["k8s", "discord"],
+    },
+    {
       slug: "spin",
       name: "Project Viewer",
-      status: "active",
+      status: "done",
       synopsis:
         "Allows people to spin up some of my personal projects on demand using DigitalOcean servers directly from my website. More projects to be added soon.",
       madeIn: {
@@ -62,7 +110,7 @@ export default function useProjects() {
     {
       slug: "vhs",
       name: '"Record+Replay"',
-      status: "active",
+      status: "done",
       synopsis:
         "Simulate production traffic with real orders to reduce regressions and improve reliability for large customers.",
       madeIn: {
@@ -79,11 +127,11 @@ export default function useProjects() {
       name: "Spotify Listener",
       featured: true,
       desktopImage: listeningHistoryDesktop,
-      status: "active",
+      status: "done",
       synopsis:
         "Listens to my Spotity music 24/7 and gives me more precise insights on my music trends.",
       madeIn: {
-        year: 2022,
+        year: 2023,
         season: "winter",
       },
       tags: ["bot", "library"],
@@ -253,7 +301,7 @@ export default function useProjects() {
       slug: "dexify-mobile",
       name: "Dexify (mobile)",
       synopsis: "Unofficial Mangadex.org mobile client.",
-      status: "paused",
+      status: "done",
       beta: true,
       featured: true,
       desktopImage: dexifyMobileDesktopIntro,
@@ -268,7 +316,7 @@ export default function useProjects() {
       tags: ["mobile"],
       technologies: ["react-native", "node", "ruby"],
       github: true,
-      url: "https://play.google.com/store/apps/details?id=com.dexifymobile",
+      // url: "https://play.google.com/store/apps/details?id=com.dexifymobile",
       description: {
         normal:
           "A mobile app that allows users to read manga hosted by Mangadex.org. " +
@@ -343,7 +391,7 @@ export default function useProjects() {
     {
       slug: "youranime",
       name: "YourAnime.moe",
-      status: "active",
+      status: "done",
       spin: { slug: "tanoshimu" },
       synopsis: "The next go-to anime streaming information website.",
       featured: true,
@@ -351,6 +399,9 @@ export default function useProjects() {
       desktopImage: youranimeDesktop,
       madeIn: {
         year: 2016,
+      },
+      endedIn: {
+        year: 2023,
       },
       tags: ["web", "oauth", "api"],
       technologies: ["rails", "react", "node"],
@@ -508,7 +559,7 @@ export default function useProjects() {
     {
       slug: "youranime-accounts",
       name: "YourAnime Accounts",
-      status: "active",
+      status: "done",
       desktopImage: youranimeAccountsDesktop,
       synopsis:
         "A custom-made OAuth (authentication) server for all of my apps.",
@@ -675,7 +726,7 @@ export default function useProjects() {
     {
       slug: "youranime-admin",
       name: "YourAnime.moe Admin panel",
-      status: "active",
+      status: "done",
       synopsis: "YourAnime.moe: supercharged.",
       madeIn: {
         year: 2020,
@@ -822,6 +873,11 @@ function deployInfo(value: ProjectDeploymentValue): ProjectDeployment {
       };
     case "google-play":
       return { name: "Google Play", url: "https://play.google.com" };
+    case "apple-app-store":
+      return {
+        name: "Apple App Store",
+        url: "https://www.apple.com/app-store/",
+      };
     case "heroku":
       return { name: "Heroku", url: "https://www.heroku.com/" };
     case "k8s":

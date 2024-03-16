@@ -11,7 +11,12 @@ export default function BackButton({ to = "/" }: Props) {
   return (
     <button
       className="button"
-      style={{ padding: 5, display: "flex", alignItems: "center", gap: 5 }}
+      style={{
+        padding: "0.45rem 0.7rem",
+        display: "flex",
+        alignItems: "center",
+        gap: 5,
+      }}
       onClick={() => navigate(to, { replace: true })}
     >
       <img src={back} height={18} width={18} alt="Back" /> <strong>Back</strong>

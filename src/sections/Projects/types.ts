@@ -21,6 +21,7 @@ export interface BasicProject {
   gallery?: string[]; // image url list for photo gallery
   github?: boolean | string; // if true, the github url will be derived from the slug
   madeIn: ProjectMadeInfo;
+  endedIn?: ProjectMadeInfo;
   watchDemo?: {
     embed?: boolean;
     link: string;
@@ -54,7 +55,8 @@ export type ProjectTag =
   | "game"
   | "oauth"
   | "cli"
-  | "infra";
+  | "infra"
+  | "ai";
 export type Season = "fall" | "winter" | "spring" | "summer";
 
 export interface TagState {
@@ -107,7 +109,8 @@ export type ProjectDeploymentValue =
   | "rubygems"
   | "gcp"
   | "discord"
-  | "google-play";
+  | "google-play"
+  | "apple-app-store";
 
 export interface ProjectDeployment {
   name: string;

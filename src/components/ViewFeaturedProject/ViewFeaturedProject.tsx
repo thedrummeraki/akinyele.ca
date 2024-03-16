@@ -22,6 +22,18 @@ export default function ViewFeaturedProject({ project }: Props) {
     return () => clearTimeout(timeout);
   }, []);
 
+  const yearMarkup = project.endedIn ? (
+    <span className="year">
+      <span className="started-in">Completed in </span>
+      {project.endedIn.year}
+    </span>
+  ) : (
+    <span className="year">
+      <span className="started-in">Started in </span>
+      {project.madeIn.year}
+    </span>
+  );
+
   return (
     <div className="view-featured-project">
       <Link to={projectUrl} className="image">
@@ -37,10 +49,7 @@ export default function ViewFeaturedProject({ project }: Props) {
         <div>
           <div className="title-and-year">
             <h2 className="title">{project.name}</h2>
-            <span className="year">
-              <span className="started-in">Started in </span>
-              {project.madeIn.year}
-            </span>
+            {yearMarkup}
           </div>
           <small>{project.synopsis}</small>
           <TagsContainer>
