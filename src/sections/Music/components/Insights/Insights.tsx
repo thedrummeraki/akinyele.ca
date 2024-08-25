@@ -74,10 +74,35 @@ export default function Insights() {
 }
 
 function InsightsDetails({ report }: { report: Report }) {
-  const timeframe = report.data.today;
+  return (
+    <div className="insight-container">
+      <InsightsPerTimeframe
+        title="Today's top songs"
+        report={report}
+        timeframe="today"
+      />
+      <InsightsPerTimeframe
+        title="Yesterday's top songs"
+        report={report}
+        timeframe="yesterday"
+      />
+    </div>
+  );
+}
 
-  const totalListenTime = timeframe.total_listen_time.length
-    ? timeframe.total_listen_time[0]
+function InsightsPerTimeframe({
+  title,
+  report,
+  timeframe,
+}: {
+  title: string;
+  report: Report;
+  timeframe: Timeframe;
+}) {
+  const details = report.data[timeframe];
+
+  const totalListenTime = details.total_listen_time.length
+    ? details.total_listen_time[0]
     : null;
   const totalListenTimeMarkup = totalListenTime ? (
     <div className="insight">
@@ -91,25 +116,14 @@ function InsightsDetails({ report }: { report: Report }) {
   ) : null;
 
   return (
-    <div className="insight-container">
-      {totalListenTimeMarkup}
-      <div>
-        <SpotifyResourceList
-          hideIfEmpty
-          title={<h3>Today's top songs</h3>}
-          data={report.data.today.top_songs}
-          top={5}
-          loading={false}
-        />
-        <SpotifyResourceList
-          hideIfEmpty
-          title={<h3>Yesterday's top songs</h3>}
-          data={report.data.yesterday.top_songs}
-          top={5}
-          loading={false}
-        />
-      </div>
-    </div>
+    <SpotifyResourceList
+      hideIfEmpty
+      title={<h3>{title}</h3>}
+      header={totalListenTimeMarkup}
+      data={details.top_songs}
+      top={5}
+      loading={false}
+    />
   );
 }
 
@@ -124,7 +138,7 @@ function useReport() {
     }
 
     setLoading(true);
-    fetch(URL)
+    fetch(URL, { cache: "no-store" })
       .then((res) => res.json())
       .then((data: Report | undefined) => {
         if (data) {

@@ -17,15 +17,17 @@ interface Props {
   data: SpotifyResource[];
   loading: boolean;
   title?: ReactNode;
+  header?: ReactNode;
   error?: boolean;
   top?: number;
   hideIfEmpty?: boolean;
 }
 
 export default function SpotifyResourceList({
-  title,
   data,
   loading,
+  title,
+  header,
   error,
   top,
   hideIfEmpty,
@@ -63,6 +65,7 @@ export default function SpotifyResourceList({
   return (
     <div className="resource-list-container">
       {title}
+      {header}
       <div className="resource-list grid">
         {data.slice(0, top).map((resource) => {
           if (isArtist(resource)) {

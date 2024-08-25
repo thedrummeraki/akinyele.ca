@@ -67,8 +67,6 @@ function TopSongCard({ topSong }: TopSongProps) {
 
   const artistNames = track.artists.map((artist) => artist.name);
 
-  console.log({ album: track.album });
-
   const artistsText =
     artistNames.length < 3
       ? artistNames.join(" and ")
