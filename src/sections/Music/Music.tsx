@@ -5,13 +5,15 @@ import {
 } from "../../App/providers/MusicProvider";
 import { Header } from "../../components";
 import { useDocumentTitle } from "../../components/DocumentTitle";
-import { SpotifyResourceList, ListeningLive } from "./components";
+import { SpotifyResourceList, ListeningLive, Insights } from "./components";
+import SpotifyTopResource from "./components/SpotifyTopResource";
 
 import "./Music.css";
 
 export default function Music() {
   const {
-    artists,
+    topArtist,
+    otherArtists,
     loading: artistsLoading,
     error: artistsError,
   } = useArtists();
@@ -45,22 +47,28 @@ export default function Music() {
       <Header />
       <ListeningLive />
       <section className="container spotify">
-        <SpotifyResourceList
-          title="My top 5 artists"
+        <Insights />
+        <SpotifyTopResource
+          title={<h2 className="title">My favorite artists</h2>}
           loading={artistsLoading}
-          top={5}
-          data={artists}
+          data={topArtist}
           error={artistsError}
         />
         <SpotifyResourceList
-          title="My personal trending songs"
+          loading={artistsLoading}
+          top={5}
+          data={otherArtists}
+          error={artistsError}
+        />
+        <SpotifyResourceList
+          title={<h2 className="title">My personal trending songs</h2>}
           loading={latestTracksLoading}
           top={5}
           data={latestTracks}
           error={latestTracksError}
         />
         <SpotifyResourceList
-          title="My favourites last year"
+          title={<h2 className="title">My favourites last year</h2>}
           loading={allTimeFavTracksLoading}
           top={5}
           data={allTimeFavTracks}

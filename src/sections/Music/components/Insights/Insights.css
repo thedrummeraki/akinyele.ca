@@ -1,0 +1,27 @@
+.spotify .insight-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.spotify .insight {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+  background-color: #181818a0;
+  border-radius: 0.65em;
+  padding: 1.5em;
+  color: #fff;
+  text-decoration: none;
+  overflow: hidden;
+  transition: background-color 300ms ease-in-out;
+}
+
+.spotify .insight:hover {
+  background-color: #28282870;
+}
+
+.spotify .insight .section {
+  display: grid;
+  gap: 0.5rem;
+}

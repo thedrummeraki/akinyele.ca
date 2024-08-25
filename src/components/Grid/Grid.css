@@ -3,6 +3,8 @@
   gap: 10px;
 }
 
+
+
 /* Smaller devices (phones, 600px and down) */
 @media only screen and (max-width: 450px) {
   .grid {

@@ -17,79 +17,7 @@ interface Props {
 
 export default function ViewProjectDetails({ project }: Props) {
   const deploymentInfo = projectDeployedWith(project);
-  const [showSpinInfo, setShowSpinInfo] = useState(false);
-  const [projectRequest, setProjectRequest] = useState<any>();
-  const [status, setStatus] = useState<string>();
-  const [requesterEmail, setRequesterEmail] = useState<string | null>(
-    localStorage.getItem("requester.email")
-  );
-
-  const { spin } = project;
-
-  const [loading, setLoading] = useState(false);
-  const [projectUrl, setProjectUrl] = useState<string>();
-  // const requestNow = useCallback(() => {
-  //   console.log({ requesterEmail });
-  //   if (!requesterEmail || !spin) {
-  //     return;
-  //   }
-  //   const encodedEmail = window.btoa(requesterEmail);
-  //   setLoading(true);
-  //   fetch(
-  //     `http://localhost/users/${encodedEmail}/requests?project_slug=${encodeURIComponent(
-  //       spin.slug
-  //     )}`,
-  //     {
-  //       method: "POST",
-  //     }
-  //   )
-  //     .then((res) => res.json())
-  //     .then(setProjectRequest)
-  //     .catch(console.error)
-  //     .finally(() => setLoading(false));
-  // }, [requesterEmail, spin]);
-
-  // useEffect(() => {
-  //   if (spin && !projectRequest) {
-  //     const currentProject = localStorage.getItem(spin.slug);
-  //     if (currentProject) {
-  //       const { requester, id } = JSON.parse(currentProject);
-  //       fetch(`http://localhost/users/${requester}/requests/${id}`)
-  //         .then((res) => res.json())
-  //         .then(setProjectRequest)
-  //         .catch(console.error);
-  //     }
-  //   }
-  // }, [spin, projectRequest]);
-
-  useEffect(() => {
-    if (
-      spin &&
-      requesterEmail &&
-      projectRequest &&
-      (projectRequest.status !== "ready" || projectRequest.status !== "failed")
-    ) {
-      const encodedEmail = window.btoa(requesterEmail);
-      let id = setInterval(() => {
-        fetch(
-          `http://localhost/users/${encodedEmail}/requests/${projectRequest.id}`
-        )
-          .then((res) => res.json())
-          .then((res) => {
-            const data = {
-              id: res.id,
-              requester: encodedEmail,
-            };
-            localStorage.setItem(`${spin.slug}`, JSON.stringify(data));
-          })
-          .catch(console.error);
-      }, 1000);
-
-      return () => clearInterval(id);
-    }
-  }, [projectRequest, requesterEmail, spin]);
-
-  console.log({ projectRequest });
+  const [projectUrl] = useState<string>();
 
   return (
     <section className="container project">
@@ -102,18 +30,19 @@ export default function ViewProjectDetails({ project }: Props) {
         >
           <div className="title-container">
             <h2 className="title">{project.name}</h2>
-            {project.spin ? (
+
+            {project.internalUrl ? (
+              <div className="try">
+                <a href={project.internalUrl} className="button">
+                  Check it out!
+                </a>
+              </div>
+            ) : project.spin ? (
               <div className="try">
                 <SpinButton project={asSpinnableProject(project)} />
               </div>
             ) : null}
           </div>
-          {/* {project.spin ? (
-            <SpinBanner
-              project={asSpinnableProject(project)}
-              onProjectUrlReady={setProjectUrl}
-            />
-          ) : null} */}
           <div className="synopsis">{project.synopsis}</div>
           <div style={{ display: "flex", gap: 10, margin: "1rem" }}>
             <GithubLink project={project} />

@@ -10,7 +10,7 @@
   transition: background-color 300ms ease-in-out;
 }
 
-.spotify .artist:hover {
+.spotify .artist:hover:not(.detailed) {
   background-color: #282828a0;
 }
 
@@ -26,4 +26,18 @@
 .spotify .artist .image {
   margin-bottom: 1em;
   border-radius: 500px;
+}
+
+.spotify .artist.detailed {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: row;
+}
+
+.spotify .artist.detailed .name {
+  font-size: x-large;
+}
+
+.spotify .artist.detailed .image {
+  margin-bottom: 0;
 }

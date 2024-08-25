@@ -1,13 +1,10 @@
+// Types have been turned off for this file (todo: investigate ReactModel type errors)
+
 import { useState } from "react";
 import ReactModal from "react-modal";
 import { youtube } from "../icons";
 
-interface Props {
-  embedUrl: string;
-  title: string;
-}
-
-export default function YoutubeEmbed({ embedUrl, title }: Props) {
+export default function YoutubeEmbed({ embedUrl, title }) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

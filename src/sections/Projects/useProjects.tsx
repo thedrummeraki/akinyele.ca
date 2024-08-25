@@ -48,7 +48,7 @@ export default function useProjects() {
       slug: "dexify-mobile-new",
       name: "Dexify (mobile)",
       synopsis:
-        "Unofficial Mangadex.org mobile client. This is a redesign of Dexify (mobile) from 2022.",
+        "Unofficial Mangadex.org mobile client. This is a redesign of Dexify (mobile) from 2021.",
       status: "active",
       beta: true,
       madeIn: {
@@ -76,6 +76,7 @@ export default function useProjects() {
         services: [{ name: "MangaDex", url: "https://mangadex.org" }],
       },
       deployedWith: ["google-play", "apple-app-store"],
+      github: "https://github.com/thedrummeraki/dexify-native",
     },
     {
       slug: "anime-scheduler",
@@ -125,6 +126,8 @@ export default function useProjects() {
     {
       slug: "listening-history",
       name: "Spotify Listener",
+      internalUrl: "/music",
+      internal: true,
       featured: true,
       desktopImage: listeningHistoryDesktop,
       status: "done",
@@ -219,11 +222,22 @@ export default function useProjects() {
       synopsis:
         '"Seeing is believing". Visitors read the first chapter of a manga ' +
         "picked at random and can quickly decide if they like or not.",
+      description: {
+        normal:
+          "This is a very simple app that allows one to randomly discover manga " +
+          "by reading the first chapter of a given manga. The user is then able to " +
+          "view a list of discovered titles. Try it out now! App will be available " +
+          "within approximately 3-4 minutes (A new domain is created, please allow " +
+          "1-2 minutes from the time the app is ready).",
+        technical:
+          "This app, written in Rails and in JavaScript, served as a way to " +
+          "test my mangadex gem, so as a result, there was less of a focus on UI " +
+          "and UX. I'm however considering improving this in the future.",
+      },
       madeIn: {
         year: 2022,
         season: "summer",
       },
-      url: "https://discover-manga.fly.dev",
       tags: ["oauth", "web"],
       technologies: ["js"],
       deployedWith: ["fly"],
@@ -392,7 +406,7 @@ export default function useProjects() {
       slug: "youranime",
       name: "YourAnime.moe",
       status: "done",
-      spin: { slug: "tanoshimu" },
+      // spin: { slug: "tanoshimu" },
       synopsis: "The next go-to anime streaming information website.",
       featured: true,
       mobileImage: youranimeMobile,

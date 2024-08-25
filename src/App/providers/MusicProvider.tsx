@@ -5,6 +5,8 @@ import React, {
   PropsWithChildren,
   useContext,
 } from "react";
+import { useMemo } from "react";
+import { TopSong } from "../../sections/Music/components/Insights/Insights";
 import {
   Artist,
   CurrentTrack,
@@ -47,7 +49,7 @@ export function useMusicContext() {
 export async function fetchSpotifyInfo<T>(path: string) {
   const host =
     process.env.REACT_APP_MUSIC_SERVICE_HOST ||
-    "https://music-akinyele-api.herokuapp.com";
+    "https://music-akinyele-api.fly.dev";
 
   const urlPath = path.startsWith("/") ? path : "/".concat(path);
   const url = host.concat(urlPath);
@@ -79,6 +81,10 @@ export function useResourcePlaying(resource: SpotifyResource) {
     return track.id === resource.id;
   }
 
+  if (isTopSong(resource)) {
+    return track.id === resource._id;
+  }
+
   if (isArtist(resource) && track.artists) {
     return Boolean(track.artists.find((artist) => artist.id === resource.id));
   }
@@ -86,10 +92,32 @@ export function useResourcePlaying(resource: SpotifyResource) {
   return false;
 }
 
+export function useArtistPlayedOnOtherTrack(track: Track) {
+  const { track: liveTrack } = useContext(MusicContext);
+
+  if (!liveTrack) {
+    return false;
+  }
+
+  const liveTrackArtists = liveTrack.artists?.map((artist) => artist.id) || [];
+  const trackArtists = track.artists.map((artist) => artist.id);
+
+  const hasArtistInCommon = liveTrackArtists.filter((liveArtistId) =>
+    trackArtists.includes(liveArtistId)
+  );
+
+  return track.id === liveTrack.id || hasArtistInCommon.length > 0;
+}
+
 export function useArtists() {
   const [loading, setLoading] = useState(false);
   const [artists, setArtists] = useState<Artist[]>([]);
   const [error, setError] = useState<any>(null);
+
+  const topArtist = useMemo(() => artists[0], [artists]);
+  const otherArtists = useMemo(() => {
+    return artists.slice(1);
+  }, [artists]);
 
   const fetchArtists = () => {
     if (loading) return;
@@ -110,7 +138,7 @@ export function useArtists() {
   // eslint-disable-next-line
   useEffect(fetchArtists, []);
 
-  return { loading, artists, error };
+  return { loading, topArtist, otherArtists, error };
 }
 
 export function useTracks({ top, timeRange }: TracksProps) {
@@ -194,4 +222,19 @@ export function isArtist(resource: SpotifyResource): resource is Artist {
 
 export function isTrack(resource: SpotifyResource): resource is Track {
   return (resource as Track).artists !== undefined;
+}
+
+export function isTopSong(resource: SpotifyResource): resource is TopSong {
+  return (
+    (resource as TopSong)._id !== undefined &&
+    (resource as TopSong).details !== undefined
+  );
+}
+
+export function trackTopSongId(resource: TopSong | Track) {
+  if (isTrack(resource)) {
+    return resource.id;
+  }
+
+  return resource._id;
 }
